@@ -1,0 +1,12 @@
+emoji {
+	width: 40px;
+  height: 40px;
+	padding: 4px;
+	z-index: 10;
+  background-size: contain;
+  display: inline-block;
+  position: absolute;
+  margin-top: -40px;
+  transition: all 5s linear;
+	top: 0;
+}
