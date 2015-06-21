@@ -1,6 +1,6 @@
 {
   "name": "emojidrop",
-  "app_id": "",
+  "app_id": "02bbab68",
   "gulpStartupTasks": [
     "sass",
     "watch"

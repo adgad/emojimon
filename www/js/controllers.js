@@ -7,15 +7,19 @@ angular.module('starter.controllers', ['ngAnimate'])
 
 	var container = document.getElementById('game-container');
 
-	$scope.score = 4;
-	$scope.isPlaying = true;
-	var totalEmojiShown = 0;
+	
+	$scope.pace = 1500;
+	$scope.hasPlayed = false;
+	$scope.isPlaying = false;
+
 
 
 	$scope.handleClick = function(type) {
-		console.log('click', type);
 		if(type === 'smile') {
 			$scope.score++;
+			if($scope.pace >= 750) {
+				$scope.pace -= 50;
+			}
 			console.log('score', $scope.score);
 		} else {
 			$scope.isPlaying = false;
@@ -27,7 +31,10 @@ angular.module('starter.controllers', ['ngAnimate'])
 	}
 
 	$scope.handleFallen = function(type) {
-		console.log(type, 'has fallen');
+		if(type === 'smile') {
+			$scope.isPlaying = false;
+			angular.element(document.querySelectorAll('emoji')).remove();
+		}
 	}
 
 	function getRandomIntegerBetween(start, end) {
@@ -45,13 +52,17 @@ angular.module('starter.controllers', ['ngAnimate'])
 			type: getRandomEmojiType()
 		};
 
-		angular.element(document.getElementById('game-container')).append($compile("<emoji type=" + emoji.type +" handle-click='handleClick(\"" + emoji.type+ "\")'></emoji>")($scope));
+		angular.element(document.getElementById('game-container')).append($compile("<emoji type=" + emoji.type +" handle-click='handleClick(\"" + emoji.type+ "\")' handle-fallen='handleFallen(\"" + emoji.type+ "\")'></emoji>")($scope));
 
-		$timeout(createEmoji, getRandomIntegerBetween(0, 3000));
+		$timeout(createEmoji, getRandomIntegerBetween(0, $scope.pace));
 	}
 
-
-createEmoji();
+	$scope.newGame = function() {
+		$scope.score = 0;
+		$scope.isPlaying = true;
+		$scope.hasPlayed = true;
+		createEmoji()
+	}
 })
 
 .directive('emoji', function($timeout, $animate) {
@@ -70,18 +81,35 @@ createEmoji();
 	       left: getRandomIntegerBetween(emojiSize, (windowWidth - (2*emojiSize))) + 'px',
 	       backgroundImage: 'url("img/emoji/' + attr.type + '.png")'
       });
-			element.on('click', function() {
-				scope.handleClick(element.attr('type'));
-				this.remove();
-				scope.$destroy();
+      var endTransition;
+			element.on('touchdown mousedown click', function() {
+				if(attr.type === 'rage') {
+					endTransition = 'scale(10) translateY(0)';
+				} else {
+					endTransition = 'rotate(180deg) scale(1.1)'
+				}
+				element.off('transitionend');
+				element.css({
+					transform: endTransition,
+					transitionDuration: '0.7s'
+				})
+				element.one('transitionend', function() {
+					element.remove();
+      		scope.$destroy();
+					scope.handleClick(element.attr('type'));
+      	});
 			});
     	setTimeout(function() {
 	      element.css({
 	      	transform: 'translateY(' + window.innerHeight + 'px)'
-	      }).on('transitionend', function() {
-	      	this.remove();
-	      	scope.$destroy();
+	      }).one('transitionend', function() {
 	      	scope.handleFallen(element.attr('type'));
+	      	this.remove();
+					scope.$destroy();
+	      	
+
+	      	
+	      	
 	      });
     	}, 1000);
 	}

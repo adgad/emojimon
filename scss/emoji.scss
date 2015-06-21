@@ -7,6 +7,9 @@ emoji {
   display: inline-block;
   position: absolute;
   margin-top: -40px;
-  transition: all 5s linear;
+  transition: all 3s linear;
 	top: 0;
+}
+emoji[type="rage"] {
+	transition-duration: 4s;
 }
