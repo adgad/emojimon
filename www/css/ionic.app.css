@@ -7684,7 +7684,7 @@ emoji {
   display: inline-block;
   position: absolute;
   margin-top: -40px;
-  transition: all 3s linear;
+  transition: all 5.5s linear;
   top: 0; }
 
 emoji[type="rage"] {

@@ -3,15 +3,12 @@ angular.module('starter.factory', [])
 .factory('Game', function() {
 
 	var Game = function() {
-		this.pace = 1500;
-		this.hasPlayed = false;
-		this.isPlaying = false;
-		this.score = 0;
 		this.reset();
 	}
 
 	Game.prototype.reset = function() {
 		this.pace = 1500;
+		this.emojiTypes = ["rage", "rage", "rage", "rage","rage", "rage", "smile", "smile", "smile","smile"];
 		this.hasPlayed = false;
 		this.isPlaying = false;
 		this.score = 0;
@@ -25,7 +22,16 @@ angular.module('starter.factory', [])
 		this.isPlaying = false;
 	}
 
-
+	Game.prototype.nextEmoji = 	function() {
+		return this.emojiTypes[Math.floor(Math.random()* this.emojiTypes.length)];
+	}
+	Game.prototype.addToScore = 	function(n) {
+		this.score += n;
+		switch(this.score) {
+			case 5:
+				this.emojiTypes = this.emojiTypes.concat(['bomb', 'bomb'])
+		}
+	}
 	return new Game();
 	
 });
