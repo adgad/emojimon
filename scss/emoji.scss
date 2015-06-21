@@ -7,9 +7,48 @@ emoji {
   display: inline-block;
   position: absolute;
   margin-top: -40px;
-  transition: all 5.5s linear;
+  transition: all 4s linear;
 	top: 0;
 }
 emoji[type="rage"] {
-	transition-duration: 4s;
+	transition-duration: 3.5s;
+}
+emoji[type="bomb"] {
+	transition-duration: 3s;
+}
+emoji[type="blush"] {
+	width: 60px;
+	height: 60px;
+	transition-duration: 5s;
+	margin-top: -60px;
+}
+emoji[type="japanese_ogre"] {
+	transition-duration: 2.5s;
+	-webkit-animation: snowside 4s ease-in-out forwards infinite, snowfall 5s ease-in-out forwards 6;
+  animation: snowside 4s ease-in-out forwards infinite, snowfall 5s ease-in-out forwards 6;
+}
+
+
+@-webkit-keyframes snowside {
+ 25% {
+    margin-left: 10%
+      }
+  75% {
+    margin-left: -10%
+  }
+  100% {
+    margin-left: 0px
+  }
+}
+
+@keyframes snowside {
+  25% {
+    margin-left: 10%
+      }
+  75% {
+    margin-left: -10%
+  }
+  100% {
+    margin-left: 0px
+  }
 }

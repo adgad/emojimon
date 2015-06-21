@@ -16,7 +16,12 @@ controllers
 	$scope.handleClick = function(type) {
 		switch(type) {
 			case 'smile':
+			case 'blush':
 				$scope.endGame();
+				break;
+			case 'bomb':
+				$scope.game.addToScore(-3);
+				angular.element(document.querySelectorAll('emoji:not([type="bomb"])')).remove();
 				break;
 			case 'rage':
 				break;
@@ -31,10 +36,14 @@ controllers
 	$scope.handleFallen = function(type) {
 		switch(type) {
 			case 'rage':
+			case 'japanese_ogre':
 				$scope.endGame();
 				break;
 			case 'smile':
 				$scope.game.addToScore(1);
+				break;
+			case 'blush':
+				$scope.game.addToScore(3);
 		}
 	}
 
