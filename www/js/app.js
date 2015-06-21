@@ -37,7 +37,7 @@ angular.module('starter', ['ionic', 'starter.directives', 'starter.factory','sta
     .state('start', {
       url: "/",
       templateUrl: "templates/start.html",
-      controller: 'GameCtrl'
+      controller: 'StartCtrl'
     });
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/');

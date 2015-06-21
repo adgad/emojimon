@@ -57,9 +57,11 @@ controllers
 		$timeout(createEmoji, getRandomIntegerBetween(0, $scope.game.pace));
 	}
 
-	$scope.newGame = function (){
+	function newGame(){
 		console.log('scope.game', $scope.game);
 		$scope.game.start();
 		createEmoji()
 	}
+
+	newGame();
 });
