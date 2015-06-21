@@ -21,3 +21,10 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
 @import "./emoji";
+
+.slider {
+	height: 100%;
+}
+.col-center {
+	text-align: center;
+}

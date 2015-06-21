@@ -4,6 +4,19 @@ angular.module('starter.factory', [])
 
 	var Game = function() {
 		this.reset();
+		console.log('localStorage', localStorage);
+		this.topScore = localStorage['topScore']  ? parseInt(localStorage.topScore) : 0;
+		if(localStorage.hasEverPlayed) {
+			this.hasEverPlayed = true;
+		} else {
+			this.hasEverPlayed = false;
+			localStorage.hasEverPlayed = false;
+		}
+	}
+
+	Game.prototype.playedFirstTime = function() {
+		this.hasEverPlayed = true;
+		localStorage.hasEverPlayed = true;
 	}
 
 	Game.prototype.reset = function() {
@@ -20,6 +33,8 @@ angular.module('starter.factory', [])
 	}
 	Game.prototype.lose = function() {
 		this.isPlaying = false;
+		this.topScore = this.score;
+		localStorage['topScore'] = this.topScore;
 	}
 
 	Game.prototype.nextEmoji = 	function() {

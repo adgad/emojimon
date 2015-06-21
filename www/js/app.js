@@ -32,7 +32,14 @@ angular.module('starter', ['ionic', 'starter.directives', 'starter.factory','sta
     .state('game', {
       url: "/game",
       templateUrl: "templates/game.html",
-      controller: 'GameCtrl'
+      controller: 'GameCtrl',
+      cache: false
+    })
+    .state('tutorial', {
+      url: "/tutorial",
+      templateUrl: "templates/tutorial.html",
+      controller: 'TutorialCtrl'
+
     })
     .state('start', {
       url: "/",

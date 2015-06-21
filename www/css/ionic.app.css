@@ -7723,3 +7723,9 @@ emoji[type="japanese_ogre"] {
 
   100% {
     margin-left: 0px; } }
+
+.slider {
+  height: 100%; }
+
+.col-center {
+  text-align: center; }

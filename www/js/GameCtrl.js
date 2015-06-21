@@ -66,9 +66,12 @@ controllers
 	}
 
 	function newGame(){
-		console.log('scope.game', $scope.game);
-		$scope.game.start();
-		createEmoji()
+		if(!$scope.game.hasEverPlayed) {
+			$state.transitionTo('tutorial',$scope, {reload: true})
+		} else {
+			$scope.game.start();
+			createEmoji()
+		}
 	}
 
 	newGame();
