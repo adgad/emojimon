@@ -1,13 +1,13 @@
 <ion-view view-title="Home">
   <ion-content scroll="false" class="padding row" id="game-container" >
   <div class="bar bar-header bar-light">
-	  <h1 class="title">{{score}}</h1>
+	  <h1 ng-show="game.isPlaying" class="title">{{game.score}}</h1>
 	</div>
 
-	<div ng-hide="isPlaying" class="row row-center">
+	<div ng-hide="game.isPlaying" class="row row-center">
   	<div class="col col-center">
-			<h3 ng-show="hasPlayed">You Lose!</h3>
-			<span ng-show="hasPlayed" class="score">Score: {{score}}</span>
+			<h3 ng-show="game.hasPlayed">You Lose!</h3>
+			<span ng-show="game.hasPlayed" class="score">Score: {{game.score}}</span>
 			<button class="button button-balanced button-block" ng-click="newGame()">
 		  	New Game
 			</button>

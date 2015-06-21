@@ -1,0 +1,17 @@
+<ion-view view-title="Start">
+  <ion-content scroll="false" class="padding row" >
+  <div class="bar bar-header bar-light bar-energized">
+	  <h1 class="title">Emojimon</h1>
+	</div>
+
+	<div ng-hide="isPlaying" class="row row-center">
+  	<div class="col col-center">
+			<h3 ng-show="hasPlayed">You Lose!</h3>
+			<span ng-show="hasPlayed" class="score">Score: {{score}}</span>
+			<button class="button button-balanced button-block" ng-click="newGame()">
+		  	New Game
+			</button>
+  	</div>
+	</div>
+  </ion-content>
+</ion-view>
