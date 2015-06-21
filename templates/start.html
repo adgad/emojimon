@@ -8,10 +8,16 @@
   	<div class="col col-center">
 			<h3 ng-show="game.hasPlayed">You Lose!</h3>
 			<span ng-show="game.hasPlayed" class="score">Score: {{game.score}}</span>
+			<span ng-show="game.hasPlayed" class="score">Top Score: {{game.topScore}}</span>
 			<a href="#/game" class="button button-balanced button-block">
 		  	New Game
 			</a>
+			<a ui-sref="tutorial" class="button button-block">
+		  	Tutorial
+			</a>
   	</div>
 	</div>
+
+
   </ion-content>
 </ion-view>
