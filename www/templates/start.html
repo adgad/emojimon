@@ -4,13 +4,13 @@
 	  <h1 class="title">Emojimon</h1>
 	</div>
 
-	<div ng-hide="isPlaying" class="row row-center">
+	<div ng-hide="game.isPlaying" class="row row-center">
   	<div class="col col-center">
-			<h3 ng-show="hasPlayed">You Lose!</h3>
-			<span ng-show="hasPlayed" class="score">Score: {{score}}</span>
-			<button class="button button-balanced button-block" ng-click="newGame()">
+			<h3 ng-show="game.hasPlayed">You Lose!</h3>
+			<span ng-show="game.hasPlayed" class="score">Score: {{game.score}}</span>
+			<a href="#/game" class="button button-balanced button-block" ng-click="newGame()">
 		  	New Game
-			</button>
+			</a>
   	</div>
 	</div>
   </ion-content>
