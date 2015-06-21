@@ -5,6 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
+var controllers = angular.module('starter.controllers', []);
 angular.module('starter', ['ionic', 'starter.directives', 'starter.factory','starter.controllers', 'starter.services'])
 
 .run(function($ionicPlatform) {
@@ -32,7 +33,12 @@ angular.module('starter', ['ionic', 'starter.directives', 'starter.factory','sta
       url: "/game",
       templateUrl: "templates/game.html",
       controller: 'GameCtrl'
+    })
+    .state('start', {
+      url: "/",
+      templateUrl: "templates/start.html",
+      controller: 'GameCtrl'
     });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/game');
+  $urlRouterProvider.otherwise('/');
 });

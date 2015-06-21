@@ -1,6 +1,6 @@
-angular.module('starter.controllers', ['ngAnimate'])
+controllers
 
-.controller('GameCtrl', function($scope, $timeout, $compile, Game) {
+.controller('GameCtrl', function($scope, $timeout, $compile, Game, $state) {
 
 	var emojiTypes = ["smile", "smile", "smile", "smile", "rage"];
 
@@ -11,6 +11,11 @@ angular.module('starter.controllers', ['ngAnimate'])
 
 
 
+	$scope.endGame = function() {
+		$scope.game.lose();
+		$state.transitionTo('start',$scope, {reload: true})
+		angular.element(document.querySelectorAll('emoji')).remove();
+	}
 	$scope.handleClick = function(type) {
 		if(type === 'smile') {
 			$scope.game.score++;
@@ -19,8 +24,7 @@ angular.module('starter.controllers', ['ngAnimate'])
 			}
 			console.log('score', $scope.game.score);
 		} else {
-			$scope.game.isPlaying = false;
-			angular.element(document.querySelectorAll('emoji')).remove();
+			$scope.endGame();
 		}
 		$timeout(function() {
 			$scope.$apply();
@@ -29,8 +33,7 @@ angular.module('starter.controllers', ['ngAnimate'])
 
 	$scope.handleFallen = function(type) {
 		if(type === 'smile') {
-			$scope.game.isPlaying = false;
-			angular.element(document.querySelectorAll('emoji')).remove();
+			$scope.endGame();
 		}
 	}
 
@@ -54,7 +57,7 @@ angular.module('starter.controllers', ['ngAnimate'])
 		$timeout(createEmoji, getRandomIntegerBetween(0, $scope.game.pace));
 	}
 
-	$scope.newGame = function() {
+	$scope.newGame = function (){
 		console.log('scope.game', $scope.game);
 		$scope.game.start();
 		createEmoji()

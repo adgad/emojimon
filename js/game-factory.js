@@ -21,6 +21,9 @@ angular.module('starter.factory', [])
 		this.hasPlayed = true;
 		this.isPlaying = true;
 	}
+	Game.prototype.lose = function() {
+		this.isPlaying = false;
+	}
 
 
 	return new Game();
