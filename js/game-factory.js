@@ -8,7 +8,7 @@ angular.module('starter.factory', [])
 
 	Game.prototype.reset = function() {
 		this.pace = 1500;
-		this.emojiTypes = ["rage", "rage", "rage", "rage","rage", "rage", "smile", "smile", "smile","smile"];
+		this.emojiTypes = ["rage", "rage", "rage", "rage","rage", "rage", "rage", "smile","smile", "smile","smile"];
 		this.hasPlayed = false;
 		this.isPlaying = false;
 		this.score = 0;
@@ -27,11 +27,22 @@ angular.module('starter.factory', [])
 	}
 	Game.prototype.addToScore = 	function(n) {
 		this.score += n;
-		switch(this.score) {
-			case 5:
-				this.emojiTypes = this.emojiTypes.concat(['bomb', 'bomb'])
+		if(this.pace >= 900) {
+			this.pace -= 50;
 		}
+		if(n < 0) {
+			return;
+		}
+		if(this.score >= 15) {
+			this.emojiTypes = this.emojiTypes.concat(['japanese_ogre', 'japanese_ogre'])
+		} else if (this.score >= 10) {
+			this.emojiTypes = this.emojiTypes.concat([, 'blush'])
+			} else if(this.score>=5) {
+				this.emojiTypes = this.emojiTypes.concat([ 'bomb'])
+
+			}
 	}
+
 	return new Game();
 	
 });

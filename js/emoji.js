@@ -20,12 +20,15 @@ angular.module('starter.directives', ['ngAnimate'])
 
 				switch(attr.type) {
 					case 'smile':
+					case 'blush':
 						endTransition = {
+							top: element.scrollTop,
 							transform: 'scale(0.1) translateY(0)',
 							transitionDuration: '0.7s'
 						}
 						break;
 					case 'rage':
+					case 'japanese_ogre':
 						endTransition = {
 							transform: 'rotate(180deg) scale(1.1)',
 							transitionDuration: '0.7s'
@@ -33,8 +36,9 @@ angular.module('starter.directives', ['ngAnimate'])
 						break;
 					case 'bomb':
 						endTransition = {
-							transform: 'scale(3) rotate(10deg) translateY(0)',
-							transitionDuration: '0.7s'
+							top: element.offsetTop,
+							transform: 'scale(3) rotate(1000deg) translate(0)',
+							transitionDuration: '0.2s'
 						}
 				}
 
@@ -55,12 +59,12 @@ angular.module('starter.directives', ['ngAnimate'])
 	      	scope.handleFallen(element.attr('type'));
 	      	this.remove();
 					scope.$destroy();
-	      	
-
-	      	
-	      	
 	      });
     	}, 1000);
+
+    	element.on('$destroy', function () {
+		    scope.$destroy();
+		  });
 	}
 }
 })
