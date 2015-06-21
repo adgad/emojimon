@@ -16,19 +16,32 @@ angular.module('starter.directives', ['ngAnimate'])
 	       backgroundImage: 'url("img/emoji/' + attr.type + '.png")'
       });
       var endTransition;
-			element.on('touchdown mousedown click', function() {
-				if(attr.type === 'rage') {
-					endTransition = 'scale(10) translateY(0)';
-				} else {
-					endTransition = 'rotate(180deg) scale(1.1)'
+			element.on('touchdown mousedown', function() {
+
+				switch(attr.type) {
+					case 'smile':
+						endTransition = {
+							transform: 'scale(0.1) translateY(0)',
+							transitionDuration: '0.7s'
+						}
+						break;
+					case 'rage':
+						endTransition = {
+							transform: 'rotate(180deg) scale(1.1)',
+							transitionDuration: '0.7s'
+						}
+						break;
+					case 'bomb':
+						endTransition = {
+							transform: 'scale(3) rotate(10deg) translateY(0)',
+							transitionDuration: '0.7s'
+						}
 				}
+
 				element.off('transitionend');
 				scope.handleClick(element.attr('type'));
 
-				element.css({
-					transform: endTransition,
-					transitionDuration: '0.7s'
-				})
+				element.css(endTransition)
 
 				element.one('transitionend', function() {
 					element.remove();
