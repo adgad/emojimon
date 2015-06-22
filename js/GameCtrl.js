@@ -39,11 +39,12 @@ controllers
 			case 'japanese_ogre':
 				$scope.endGame();
 				break;
-			case 'smile':
+			case 'blush':
 				$scope.game.addToScore(1);
 				break;
-			case 'blush':
+			case 'smile':
 				$scope.game.addToScore(3);
+				break;
 		}
 	}
 
@@ -52,17 +53,19 @@ controllers
 	};
 
 
-	function createEmoji() {
+	function createEmoji(forceType) {
 		if(!$scope.game.isPlaying) {
 			return;
 		}
 		var emoji = {
-			type: $scope.game.nextEmoji()
+			type: forceType || $scope.game.nextEmoji()
 		};
 
-		angular.element(document.getElementById('game-container')).append($compile("<emoji type=" + emoji.type +" handle-click='handleClick(\"" + emoji.type+ "\")' handle-fallen='handleFallen(\"" + emoji.type+ "\")'></emoji>")($scope));
-
-		$timeout(createEmoji, getRandomIntegerBetween(0, $scope.game.pace));
+		angular.element(document.getElementById('game-container')).append($compile("<emoji type=" + emoji.type +" handle-click='handleClick(\"" + emoji.type+ "\")' handle-fallen='handleFallen(\"" + emoji.type+ "\")' data-variant='" + getRandomIntegerBetween(1, 2) + "'></emoji>")($scope));
+		if(!forceType) {
+			$timeout(createEmoji, getRandomIntegerBetween(0, $scope.game.pace));
+		}
+		
 	}
 
 	function newGame(){
@@ -70,7 +73,11 @@ controllers
 			$state.transitionTo('tutorial',$scope, {reload: true})
 		} else {
 			$scope.game.start();
-			createEmoji()
+			createEmoji('blush');
+			$timeout(function() {
+				createEmoji('rage')
+			}, getRandomIntegerBetween(0, $scope.game.pace));
+			$timeout(createEmoji, getRandomIntegerBetween(0, $scope.game.pace))
 		}
 	}
 
