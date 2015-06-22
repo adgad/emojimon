@@ -36,7 +36,7 @@ controllers
 		switch(type) {
 			case 'rage':
 			case 'japanese_ogre':
-				$scope.endGame('Oh no, you let misery in...');
+				$scope.endGame('Oh no, you let misery and despair in to your life...');
 				break;
 			case 'smile':
 				$scope.game.addToScore(1);
@@ -79,6 +79,5 @@ controllers
 			$timeout(createEmoji, getRandomIntegerBetween(0, $scope.game.pace))
 		}
 	}
-
-	newGame();
+	$timeout(newGame, 500); //wait for state to transition in;
 });

@@ -26,6 +26,7 @@ angular.module('starter.directives', ['ngAnimate'])
 					case 'grin':
 						endTransition = {
 							top: element.scrollTop,
+							webkitTransform: 'scale(0.1) translateY(0)',
 							transform: 'scale(0.1) translateY(0)',
 							transitionDuration: '0.7s'
 						}
@@ -33,6 +34,7 @@ angular.module('starter.directives', ['ngAnimate'])
 					case 'rage':
 					case 'japanese_ogre':
 						endTransition = {
+							webkitTransform: 'rotate(180deg) scale(1.1)',
 							transform: 'rotate(180deg) scale(1.1)',
 							transitionDuration: '0.7s',
 							opacity: 0
@@ -41,6 +43,7 @@ angular.module('starter.directives', ['ngAnimate'])
 					case 'bomb':
 						endTransition = {
 							top: element.offsetTop,
+							webkitTransform: 'scale(3) rotate(1000deg) translate(0)',
 							transform: 'scale(3) rotate(1000deg) translate(0)',
 							transitionDuration: '0.2s'
 						}
@@ -58,6 +61,7 @@ angular.module('starter.directives', ['ngAnimate'])
 			});
     	setTimeout(function() {
 	      element.css({
+	      	webkitTransform: 'translateY(' + window.innerHeight + 'px)',
 	      	transform: 'translateY(' + window.innerHeight + 'px)'
 	      }).one('transitionend', function() {
 	      	scope.handleFallen(element.attr('type'));
