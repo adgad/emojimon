@@ -12,7 +12,6 @@ angular.module('starter.factory', [])
 			this.hasEverPlayed = false;
 			localStorage.hasEverPlayed = false;
 		}
-		this.peakScoreSoFar = 0;
 	}
 
 	Game.prototype.playedFirstTime = function() {
@@ -51,16 +50,12 @@ angular.module('starter.factory', [])
 		if(this.pace >= 500) {
 			this.pace -= 50;
 		}
-		if(this.peakScoreSoFar < 15 && this.score >= 15) {
+		if(this.score > 17 && this.emojiTypes.indexOf('bomb') < 0) {
 			this.emojiTypes = this.emojiTypes.concat([ 'bomb'])
-		} else if (this.peakScoreSoFar < 10 && this.score >= 10) {
+		} else if (this.score > 12 && this.emojiTypes.indexOf('smile') < 0) {
 			this.emojiTypes = this.emojiTypes.concat([, 'smile'])
-			} else if(this.peakScoreSoFar < 5 &&this.score>=5) {
+			} else if( this.score > 7 &&  this.emojiTypes.indexOf('japanese_ogre') < 0) {
 				this.emojiTypes = this.emojiTypes.concat(['japanese_ogre', 'japanese_ogre'])
-			}
-			
-			if(this.score > this.peakScoreSoFar) {
-				this.peakScoreSoFar = this.score;
 			}
 	}
 
