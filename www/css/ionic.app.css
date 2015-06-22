@@ -7744,28 +7744,48 @@ emoji[type="japanese_ogre"][data-variant="2"] {
   font-family: "HelveticaNeue-Light", "Roboto-Light", "Segoe UI-Light", sans-serif-light;
   font-weight: 100;
   margin: 40px 0;
-  letter-spacing: 10px; }
+  letter-spacing: 8px; }
 
 .title-emoji {
   width: 39px;
-  transform: translateY(5px) translateX(-2px);
-  margin-right: 5px; }
+  transform: translateY(5px) translateX(-2px); }
+
+.tutorial-emoji {
+  width: 25%; }
 
 .score {
   font-family: "HelveticaNeue-Light", "Roboto-Light", "Segoe UI-Light", sans-serif-light;
   font-weight: 200;
   display: inline-block;
-  font-size: 24px;
+  font-size: 16px;
   width: auto;
-  padding: 10px;
+  padding: 5px;
   background-color: rgba(255, 201, 0, 0.7);
   color: #333;
   border: 3px solid #333; }
-  .bar-header .score {
+  #game-container .score {
     position: absolute;
     right: 0;
     padding: 0 10px;
-    font-size: 32px; }
+    font-size: 28px;
+    margin-right: 10px; }
+  .scores .score {
+    margin: 4px 0;
+    width: 50%;
+    float: left; }
+    .scores .score:first-child {
+      border-right-width: 0; }
+  .score.top {
+    font-weight: bold; }
+
+.scores {
+  margin: 5px 0;
+  overflow: hidden; }
+
+.reason {
+  font-family: "HelveticaNeue-Light", "Roboto-Light", "Segoe UI-Light", sans-serif-light;
+  font-weight: 200;
+  font-size: 16px; }
 
 [animate-on-change] {
   transition: all 0.3s;

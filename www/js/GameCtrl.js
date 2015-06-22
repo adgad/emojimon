@@ -7,8 +7,8 @@ controllers
 
 
 
-	$scope.endGame = function() {
-		$scope.game.lose();
+	$scope.endGame = function(reasonLost) {
+		$scope.game.lose(reasonLost);
 		$state.transitionTo('start',$scope, {reload: true})
 		angular.element(document.querySelectorAll('emoji')).remove();
 	}
@@ -16,7 +16,7 @@ controllers
 		switch(type) {
 			case 'smile':
 			case 'grin':
-				$scope.endGame();
+				$scope.endGame('Uh oh. You sent away happiness!');
 				break;
 			case 'bomb':
 				$scope.game.addToScore(-3);
@@ -36,7 +36,7 @@ controllers
 		switch(type) {
 			case 'rage':
 			case 'japanese_ogre':
-				$scope.endGame();
+				$scope.endGame('Oh no, you let misery in...');
 				break;
 			case 'smile':
 				$scope.game.addToScore(1);

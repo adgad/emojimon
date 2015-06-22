@@ -30,8 +30,10 @@ angular.module('starter.factory', [])
 		this.hasPlayed = true;
 		this.isPlaying = true;
 	}
-	Game.prototype.lose = function() {
+	Game.prototype.lose = function(reasonLost) {
 		this.isPlaying = false;
+		this.reasonLost = reasonLost;
+		console.log('reasonLost', reasonLost);
 		if(this.score > this.topScore) {
 			this.topScore = this.score;
 			localStorage['topScore'] = this.topScore;
