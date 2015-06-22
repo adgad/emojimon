@@ -47,6 +47,26 @@ angular.module('starter', ['ionic', 'starter.directives', 'starter.factory','sta
       templateUrl: "templates/start.html",
       controller: 'StartCtrl'
     });
+		var admobid = {};
+    document.addEventListener("deviceready", function () {
+    	if( /(android)/i.test(navigator.userAgent) ) { // for android
+        admobid = {
+            banner: 'ca-app-pub-5948456765366965/3183603538'
+        };
+    } else if(/(ipod|iphone|ipad)/i.test(navigator.userAgent)) { // for ios
+        admobid = {
+            banner: 'ca-app-pub-5948456765366965/1397315932'
+        };
+    }
+        
+
+        window.AdMob.createBanner( {
+            adId: admobid.banner,
+            position: window.AdMob.AD_POSITION.BOTTOM_CENTER,
+            autoShow: true } );
+
+    }, false);
+
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/');
 
