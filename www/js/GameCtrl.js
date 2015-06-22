@@ -1,5 +1,4 @@
 controllers
-
 .controller('GameCtrl', function($scope, $timeout, $compile, Game, $state) {
 
 	var container = document.getElementById('game-container');
