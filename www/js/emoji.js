@@ -14,7 +14,7 @@ angular.module('starter.directives', ['ngAnimate'])
 		link: function(scope, element, attr) {
       element.css({
 	       left: getRandomIntegerBetween(emojiSize, (windowWidth - (2*emojiSize))) + 'px',
-	       backgroundImage: 'url("img/emoji/' + attr.type + '.png")'
+	       backgroundImage: 'url("img/emoji/' + attr.type + '.svg")'
       });
       element.attr('will-change', 'transform');
       var endTransition;
@@ -23,7 +23,7 @@ angular.module('starter.directives', ['ngAnimate'])
 
 				switch(attr.type) {
 					case 'smile':
-					case 'blush':
+					case 'grin':
 						endTransition = {
 							top: element.scrollTop,
 							transform: 'scale(0.1) translateY(0)',

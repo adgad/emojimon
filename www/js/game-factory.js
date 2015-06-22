@@ -4,7 +4,6 @@ angular.module('starter.factory', [])
 
 	var Game = function() {
 		this.reset();
-		console.log('localStorage', localStorage);
 		this.topScore = localStorage['topScore']  ? parseInt(localStorage.topScore) : 0;
 		if(localStorage.hasEverPlayed) {
 			this.hasEverPlayed = true;
@@ -21,7 +20,7 @@ angular.module('starter.factory', [])
 
 	Game.prototype.reset = function() {
 		this.pace = 1500;
-		this.emojiTypes = ["rage", "rage", "rage", "rage","rage", "rage", "rage", "rage", "blush","blush", "blush","blush"];
+		this.emojiTypes = ["rage", "rage", "rage", "rage","rage", "rage", "rage", "rage", "smile","smile", "smile","smile"];
 		this.hasPlayed = false;
 		this.isPlaying = false;
 		this.score = 0;
@@ -50,12 +49,12 @@ angular.module('starter.factory', [])
 		if(this.pace >= 500) {
 			this.pace -= 50;
 		}
-		if(this.score > 17 && this.emojiTypes.indexOf('bomb') < 0) {
-			this.emojiTypes = this.emojiTypes.concat([ 'bomb'])
-		} else if (this.score > 12 && this.emojiTypes.indexOf('smile') < 0) {
-			this.emojiTypes = this.emojiTypes.concat([, 'smile'])
+		if(this.score > 18 && this.emojiTypes.indexOf('bomb') < 0) {
+			this.emojiTypes = this.emojiTypes.concat([ 'bomb', 'grin'])
+		} else if (this.score > 13 && this.emojiTypes.indexOf('grin') < 0) {
+			this.emojiTypes = this.emojiTypes.concat(['grin', 'japanese_ogre'])
 			} else if( this.score > 7 &&  this.emojiTypes.indexOf('japanese_ogre') < 0) {
-				this.emojiTypes = this.emojiTypes.concat(['japanese_ogre', 'japanese_ogre'])
+				this.emojiTypes = this.emojiTypes.concat(['japanese_ogre'])
 			}
 	}
 

@@ -16,7 +16,7 @@ controllers
 	$scope.handleClick = function(type) {
 		switch(type) {
 			case 'smile':
-			case 'blush':
+			case 'grin':
 				$scope.endGame();
 				break;
 			case 'bomb':
@@ -39,10 +39,10 @@ controllers
 			case 'japanese_ogre':
 				$scope.endGame();
 				break;
-			case 'blush':
+			case 'smile':
 				$scope.game.addToScore(1);
 				break;
-			case 'smile':
+			case 'grin':
 				$scope.game.addToScore(3);
 				break;
 		}
@@ -73,7 +73,7 @@ controllers
 			$state.transitionTo('tutorial',$scope, {reload: true})
 		} else {
 			$scope.game.start();
-			createEmoji('blush');
+			createEmoji('smile');
 			$timeout(function() {
 				createEmoji('rage')
 			}, getRandomIntegerBetween(0, $scope.game.pace));
