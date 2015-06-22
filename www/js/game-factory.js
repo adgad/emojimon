@@ -21,7 +21,7 @@ angular.module('starter.factory', [])
 
 	Game.prototype.reset = function() {
 		this.pace = 1500;
-		this.emojiTypes = ["rage", "rage", "rage", "rage","rage", "rage", "rage", "smile","smile", "smile","smile"];
+		this.emojiTypes = ["japanese_ogre", "japanese_ogre", "japanese_ogre"];
 		this.hasPlayed = false;
 		this.isPlaying = false;
 		this.score = 0;
@@ -33,27 +33,30 @@ angular.module('starter.factory', [])
 	}
 	Game.prototype.lose = function() {
 		this.isPlaying = false;
-		this.topScore = this.score;
-		localStorage['topScore'] = this.topScore;
+		if(this.score > this.topScore) {
+			this.topScore = this.score;
+			localStorage['topScore'] = this.topScore;
+		}
 	}
 
 	Game.prototype.nextEmoji = 	function() {
 		return this.emojiTypes[Math.floor(Math.random()* this.emojiTypes.length)];
 	}
 	Game.prototype.addToScore = 	function(n) {
+		var previousScore = this.score;
 		this.score += n;
-		if(this.pace >= 900) {
+		if(this.pace >= 500) {
 			this.pace -= 50;
 		}
 		if(n < 0) {
 			return;
 		}
-		if(this.score >= 15) {
-			this.emojiTypes = this.emojiTypes.concat(['japanese_ogre', 'japanese_ogre'])
-		} else if (this.score >= 10) {
-			this.emojiTypes = this.emojiTypes.concat([, 'blush'])
-			} else if(this.score>=5) {
-				this.emojiTypes = this.emojiTypes.concat([ 'bomb'])
+		if(previousScore < 15 && this.score >= 15) {
+			this.emojiTypes = this.emojiTypes.concat([ 'bomb'])
+		} else if (previousScore < 10 && this.score >= 10) {
+			this.emojiTypes = this.emojiTypes.concat([, 'smile'])
+			} else if(previousScore < 5 &&this.score>=5) {
+				this.emojiTypes = this.emojiTypes.concat(['japanese_ogre', 'japanese_ogre'])
 
 			}
 	}

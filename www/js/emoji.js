@@ -5,6 +5,7 @@ angular.module('starter.directives', ['ngAnimate'])
 	function getRandomIntegerBetween(start, end) {
 		return Math.floor(Math.random() * end) + start;
 	};
+
 	return {
 		scope: {
 			'handleClick': '&',
@@ -16,6 +17,7 @@ angular.module('starter.directives', ['ngAnimate'])
 	       backgroundImage: 'url("img/emoji/' + attr.type + '.png")'
       });
       var endTransition;
+
 			element.on('touchdown mousedown', function() {
 
 				switch(attr.type) {
@@ -31,7 +33,8 @@ angular.module('starter.directives', ['ngAnimate'])
 					case 'japanese_ogre':
 						endTransition = {
 							transform: 'rotate(180deg) scale(1.1)',
-							transitionDuration: '0.7s'
+							transitionDuration: '0.7s',
+							opacity: 0
 						}
 						break;
 					case 'bomb':
@@ -67,4 +70,4 @@ angular.module('starter.directives', ['ngAnimate'])
 		  });
 	}
 }
-})
+});

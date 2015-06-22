@@ -1,11 +1,12 @@
 <ion-view view-title="Start">
   <ion-content scroll="false" class="padding row" >
   <div class="bar bar-header bar-light bar-energized">
-	  <h1 class="title">Emojimon</h1>
 	</div>
+	
 
-	<div ng-hide="game.isPlaying" class="row row-center">
+	<div class="row row-center">
   	<div class="col col-center">
+  		<h1 class="emojimon-title">EM<img class="title-emoji" src="img/emoji/blush.png"/>JIM<img class="title-emoji" src="img/emoji/rage.png"/>N</h1>
 			<h3 ng-show="game.hasPlayed">You Lose!</h3>
 			<span ng-show="game.hasPlayed" class="score">Score: {{game.score}}</span>
 			<span ng-show="game.hasPlayed" class="score">Top Score: {{game.topScore}}</span>

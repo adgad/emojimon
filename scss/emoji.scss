@@ -16,24 +16,32 @@ emoji[type="rage"] {
 emoji[type="bomb"] {
 	transition-duration: 3s;
 }
-emoji[type="blush"] {
-	width: 60px;
-	height: 60px;
-	transition-duration: 5s;
-	margin-top: -60px;
+emoji[type="smile"] {
+	transition-duration: 7s;
 }
 emoji[type="japanese_ogre"] {
-	transition-duration: 2.5s;
-	-webkit-animation: snowside 4s ease-in-out forwards infinite, snowfall 5s ease-in-out forwards 6;
-  animation: snowside 4s ease-in-out forwards infinite, snowfall 5s ease-in-out forwards 6;
+	transition-duration: 2s;
+	-webkit-animation: snowside 3s ease-in-out forwards infinite;
+  animation: snowside 3s ease-in-out forwards infinite;
 }
+emoji[type="japanese_ogre"][data-variant="1"] {
+	transition-duration: 2s;
+	-webkit-animation: snowside 3s ease-in-out forwards infinite;
+  animation: snowside 3s ease-in-out forwards infinite;
+  }
 
-
+  emoji[type="japanese_ogre"][data-variant="2"] {
+	transition-duration: 2s;
+	-webkit-animation: snowside 4s cubic-bezier forwards infinite;
+  animation: snowside 4s cubic-bezier forwards infinite;
+  	-webkit-animation-direction: reverse;
+  	animation-direction: reverse;
+  }
 @-webkit-keyframes snowside {
  25% {
     margin-left: 10%
       }
-  75% {
+  50% {
     margin-left: -10%
   }
   100% {
@@ -45,7 +53,7 @@ emoji[type="japanese_ogre"] {
   25% {
     margin-left: 10%
       }
-  75% {
+  50% {
     margin-left: -10%
   }
   100% {
