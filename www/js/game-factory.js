@@ -21,7 +21,7 @@ angular.module('starter.factory', [])
 
 	Game.prototype.reset = function() {
 		this.pace = 1500;
-		this.emojiTypes = ["japanese_ogre", "japanese_ogre", "japanese_ogre"];
+		this.emojiTypes = ["rage", "rage", "rage", "rage","rage", "rage", "rage", "rage", "blush","blush", "blush","blush"];
 		this.hasPlayed = false;
 		this.isPlaying = false;
 		this.score = 0;
