@@ -7755,6 +7755,7 @@ emoji[type="japanese_ogre"][data-variant="2"] {
 
 .title-emoji {
   width: 39px;
+  -webkit-transform: translateY(5px) translateX(-2px);
   transform: translateY(5px) translateX(-2px); }
 
 .tutorial-emoji {
