@@ -16,6 +16,7 @@ angular.module('starter.directives', ['ngAnimate'])
 	       left: getRandomIntegerBetween(emojiSize, (windowWidth - (2*emojiSize))) + 'px',
 	       backgroundImage: 'url("img/emoji/' + attr.type + '.png")'
       });
+      element.attr('will-change', 'transform');
       var endTransition;
 
 			element.on('touchdown mousedown', function() {
