@@ -1,7 +1,7 @@
 <ion-view view-title="Home">
   <ion-content scroll="false" class="padding row" id="game-container" >
   <div class="bar bar-header bar-light">
-	  <h1 ng-show="game.isPlaying" class="title">{{game.score}}</h1>
+	  <h1 ng-show="game.isPlaying" class="score" animate-on-change="game.score">{{game.score}}</h1>
 	</div>
 
   </ion-content>
