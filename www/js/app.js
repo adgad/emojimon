@@ -39,7 +39,8 @@ angular.module('starter', ['ionic', 'starter.directives', 'starter.factory','sta
     .state('tutorial', {
       url: "/tutorial",
       templateUrl: "templates/tutorial.html",
-      controller: 'TutorialCtrl'
+      controller: 'TutorialCtrl',
+      cache: false
 
     })
     .state('start', {
