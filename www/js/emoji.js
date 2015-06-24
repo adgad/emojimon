@@ -2,6 +2,8 @@ angular.module('starter.directives', ['ngAnimate'])
 .directive('emoji', function($timeout, $animate) {
 	var windowWidth = window.innerWidth;
 	var emojiSize = 32;
+	var clickEvent = ('ontransitionend' in window) ? 'touchdown mousedown' : 'click';
+
 	function getRandomIntegerBetween(start, end) {
 		return Math.floor(Math.random() * end) + start;
 	};
@@ -16,17 +18,18 @@ angular.module('starter.directives', ['ngAnimate'])
 	       left: getRandomIntegerBetween(emojiSize, (windowWidth - (2*emojiSize))) + 'px',
 	       backgroundImage: 'url("img/emoji/' + attr.type + '.svg")'
       });
+
       element.attr('will-change', 'transform');
       var endTransition;
 
-			element.on('touchdown mousedown', function() {
-
+			element.on(clickEvent, function(e) {
+				e.preventDefault();
 				switch(attr.type) {
 					case 'smile':
 					case 'grin':
 						endTransition = {
 							top: element.scrollTop,
-							webkitTransform: 'scale(0.1) translateY(0)',
+							webkitTransform: 'scale(0.1) translate3d(0,0,0)',
 							transform: 'scale(0.1) translateY(0)',
 							transitionDuration: '0.7s'
 						}
@@ -43,27 +46,28 @@ angular.module('starter.directives', ['ngAnimate'])
 					case 'bomb':
 						endTransition = {
 							top: element.offsetTop,
-							webkitTransform: 'scale(3) rotate(1000deg) translate(0)',
-							transform: 'scale(3) rotate(1000deg) translate(0)',
+							webkitTransform: 'scale(3) rotate(1000deg) translate3d(0,0,0)',
+							transform: 'scale(3) rotate(1000deg) translated3(0,0,0)',
 							transitionDuration: '0.2s'
 						}
 				}
 
-				element.off('transitionend');
+				element.off('transitionEnd');
+				element.off('webkitTransitionEnd');
 				scope.handleClick(element.attr('type'));
 
 				element.css(endTransition)
 
-				element.one('transitionend', function() {
+				element.one('webkitTransitionEnd transitionEnd', function() {
 					element.remove();
       		scope.$destroy();
       	});
 			});
     	setTimeout(function() {
 	      element.css({
-	      	webkitTransform: 'translateY(' + window.innerHeight + 'px)',
-	      	transform: 'translateY(' + window.innerHeight + 'px)'
-	      }).one('transitionend', function() {
+	      	webkitTransform: 'translate3d(0,' + (window.innerHeight + 50) + 'px, 0)',
+	      	transform: 'translate3d(0,' + (window.innerHeight + 50) + 'px,0)'
+	      }).one('webkitTransitionEnd transitionEnd', function() {
 	      	scope.handleFallen(element.attr('type'));
 	      	this.remove();
 					scope.$destroy();

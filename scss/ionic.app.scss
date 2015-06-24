@@ -39,11 +39,13 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 
 .title-emoji {
 	width: 39px;
+	max-height: 45px;
   -webkit-transform: translateY(5px) translateX(-2px);
   transform: translateY(5px) translateX(-2px);
 }
 .tutorial-emoji {
 	width: 25%;
+	max-height: 100px;
 }
 
 .score {
