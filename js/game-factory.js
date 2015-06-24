@@ -19,11 +19,12 @@ angular.module('starter.factory', [])
 	}
 
 	Game.prototype.reset = function() {
-		this.pace = 1500;
+		this.pace = 1400;
 		this.emojiTypes = ["rage", "rage", "rage", "rage","rage", "rage", "rage", "rage", "smile","smile", "smile","smile"];
 		this.hasPlayed = false;
 		this.isPlaying = false;
 		this.score = 0;
+		this.paceIncrease = 50;
 	}
 	Game.prototype.start = function() {
 		this.reset();
@@ -49,14 +50,17 @@ angular.module('starter.factory', [])
 			return;
 		}
 		if(this.pace >= 500) {
-			this.pace -= 50;
+			this.pace -= this.paceIncrease;
 		}
 		if(this.score > 18 && this.emojiTypes.indexOf('bomb') < 0) {
-			this.emojiTypes = this.emojiTypes.concat([ 'bomb', 'grin'])
+			this.emojiTypes = this.emojiTypes.concat([ 'bomb', 'rage'])
+			this.paceIncrease = 20;
 		} else if (this.score > 13 && this.emojiTypes.indexOf('grin') < 0) {
-			this.emojiTypes = this.emojiTypes.concat(['grin', 'japanese_ogre'])
+			this.emojiTypes = this.emojiTypes.concat(['grin', 'japanese_ogre']);
+			this.paceIncrease = 35;
 			} else if( this.score > 7 &&  this.emojiTypes.indexOf('japanese_ogre') < 0) {
 				this.emojiTypes = this.emojiTypes.concat(['japanese_ogre'])
+				this.paceIncrease = 50;
 			}
 	}
 

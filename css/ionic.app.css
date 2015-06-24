@@ -7676,14 +7676,14 @@ a.button {
   transition-duration: 0s; }
 
 emoji {
-  width: 40px;
-  height: 40px;
-  padding: 4px;
+  width: 46px;
+  height: 46px;
+  padding: 1px;
   z-index: 10;
   background-size: contain;
   display: inline-block;
   position: absolute;
-  margin-top: -40px;
+  margin-top: -46px;
   -webkit-transition: all 4s linear;
   transition: all 4s linear;
   top: 0; }
@@ -7755,6 +7755,7 @@ emoji[type="japanese_ogre"][data-variant="2"] {
 
 .title-emoji {
   width: 39px;
+  max-height: 45px;
   -webkit-transform: translateY(5px) translateX(-2px);
   transform: translateY(5px) translateX(-2px); }
 
