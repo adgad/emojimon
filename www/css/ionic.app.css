@@ -7676,14 +7676,14 @@ a.button {
   transition-duration: 0s; }
 
 emoji {
-  width: 46px;
-  height: 46px;
+  width: 45px;
+  height: 45px;
   padding: 1px;
   z-index: 10;
   background-size: contain;
   display: inline-block;
   position: absolute;
-  margin-top: -46px;
+  margin-top: -45px;
   -webkit-transition: all 4s linear;
   transition: all 4s linear;
   top: 0; }
@@ -7760,7 +7760,8 @@ emoji[type="japanese_ogre"][data-variant="2"] {
   transform: translateY(5px) translateX(-2px); }
 
 .tutorial-emoji {
-  width: 25%; }
+  width: 25%;
+  max-height: 100px; }
 
 .score {
   font-family: "HelveticaNeue-Light", "Roboto-Light", "Segoe UI-Light", sans-serif-light;
