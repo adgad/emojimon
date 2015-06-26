@@ -3,11 +3,31 @@ angular.module('starter.directives', ['ngAnimate'])
 	var windowWidth = window.innerWidth;
 	var emojiSize = 32;
 	var clickEvent = ('ontransitionend' in window) ? 'touchdown mousedown' : 'click';
+	var duration = {
+		'smile': {
+			min: 4,
+			max: 4.1
+		},
+		'grin': {
+			min: 5,
+			max: 8
+		},
+		'rage': {
+			min: 2.2,
+			max: 3.5
+		},
+		japanese_ogre: {
+			min: 1.7,
+			max: 3
+		}
+	}
 
 	function getRandomIntegerBetween(start, end) {
 		return Math.floor(Math.random() * end) + start;
 	};
-
+	function getRandomFloatBetween(start, end) {
+		return (Math.random() * end) + start;
+	};
 	return {
 		scope: {
 			'handleClick': '&',
@@ -66,7 +86,8 @@ angular.module('starter.directives', ['ngAnimate'])
     	setTimeout(function() {
 	      element.css({
 	      	webkitTransform: 'translate3d(0,' + (window.innerHeight + 50) + 'px, 0)',
-	      	transform: 'translate3d(0,' + (window.innerHeight + 50) + 'px,0)'
+	      	transform: 'translate3d(0,' + (window.innerHeight + 50) + 'px,0)',
+	      	transitionDuration: getRandomFloatBetween(duration[attr.type].min, duration[attr.type].max) + 's'
 	      }).one('webkitTransitionEnd transitionEnd', function() {
 	      	scope.handleFallen(element.attr('type'));
 	      	this.remove();
