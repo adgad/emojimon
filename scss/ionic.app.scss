@@ -20,6 +20,7 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
+@import "www/lib/ionicons/scss/ionicons";
 @import "./emoji";
 
 .slider {
@@ -83,6 +84,15 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 	margin: 5px 0;
 	overflow: hidden;
 }
+.tutorial {
+	font-size:44px;
+	color: #333;
+	transition: opacity 0.1s ease-in-out;
+	&:hover {
+		opacity: 0.7;
+	}
+}
+
 .reason {
 	font-family: $font-family-light-sans-serif;
 	font-weight: 200;

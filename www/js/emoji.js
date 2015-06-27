@@ -59,7 +59,7 @@ angular.module('starter.directives', ['ngAnimate'])
 						endTransition = {
 							webkitTransform: 'rotate(180deg) scale(1.1)',
 							transform: 'rotate(180deg) scale(1.1)',
-							transitionDuration: '0.7s',
+							transitionDuration: '0.4s',
 							opacity: 0
 						}
 						break;

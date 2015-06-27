@@ -7,7 +7,10 @@
 	<div class="row row-center">
   	<div class="col col-center">
   		<h1 class="emojimon-title">EM<img class="title-emoji" src="img/emoji/smile.svg"/>JIM<img class="title-emoji" src="img/emoji/rage.svg"/>N</h1>
-			<h3 ng-show="game.hasPlayed"><img class="title-emoji" src="img/emoji/sad.svg"/></h3>
+			<h3 ng-show="game.hasPlayed">
+			<span class="game-over">Game Over</span>
+			<img class="title-emoji" src="img/emoji/sad.svg"/>
+			</h3>
 
 			<p ng-show="game.reasonLost" class="reason">{{game.reasonLost}}</p>
 			<div class="scores">
@@ -20,8 +23,8 @@
 			<a href="#/game" class="button button-balanced button-block" ng-show="game.hasPlayed">
 		  	Play again
 			</a>
-			<a ui-sref="tutorial" class="button button-block">
-		  	Tutorial
+			<a ui-sref="tutorial" class="tutorial icon ion-help-circled"></a>
+			<a class="tutorial icon ion-share-android-alt" ng-click="shareAnywhere()">Share</a>
 			</a>
   	</div>
 	</div>
