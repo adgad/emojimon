@@ -7,9 +7,13 @@
 	<div class="row row-center">
   	<div class="col col-center">
   		<h1 class="emojimon-title">EM<img class="title-emoji" src="img/emoji/smile.svg"/>JIM<img class="title-emoji" src="img/emoji/rage.svg"/>N</h1>
-			<h3 ng-show="game.hasPlayed">
+			<h3 ng-show="game.score < game.topScore && game.hasPlayed">
 			<span class="game-over">Game Over</span>
 			<img class="title-emoji" src="img/emoji/sad.svg"/>
+			</h3>
+			<h3 ng-show="game.score >= game.topScore && game.hasPlayed">
+			<span class="game-over">New High Score</span>
+			<img class="title-emoji" src="img/emoji/seenoevil.svg"/>
 			</h3>
 
 			<p ng-show="game.reasonLost" class="reason">{{game.reasonLost}}</p>
