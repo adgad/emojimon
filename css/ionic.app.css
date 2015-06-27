@@ -10023,11 +10023,14 @@ emoji[type="japanese_ogre"][data-variant="2"] {
   overflow: hidden; }
 
 .tutorial {
-  font-size: 44px;
+  font-size: 36px;
+  padding: 8px;
+  margin: 4px;
+  display: inline-block;
   color: #333;
   transition: opacity 0.1s ease-in-out; }
   .tutorial:hover {
-    opacity: 0.7; }
+    opacity: 0.6; }
 
 .reason {
   font-family: "HelveticaNeue-Light", "Roboto-Light", "Segoe UI-Light", sans-serif-light;
