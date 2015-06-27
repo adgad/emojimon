@@ -1,10 +1,9 @@
 controllers
-.controller('GameCtrl', function($scope, $timeout, $compile, Game, $state) {
+.controller('GameCtrl', function($scope, $timeout, $compile, Game, $state, Emoji) {
 
 	var container = document.getElementById('game-container');
 
 	$scope.game = Game;
-
 
 
 	$scope.endGame = function(reasonLost) {
@@ -12,39 +11,37 @@ controllers
 		$state.transitionTo('start',$scope, {reload: true})
 		angular.element(document.querySelectorAll('emoji')).remove();
 	}
-	$scope.handleClick = function(type) {
-		switch(type) {
-			case 'smile':
-			case 'grin':
-				$scope.endGame('Uh oh. You sent away happiness!');
-				break;
-			case 'bomb':
-				$scope.game.addToScore(-3);
-				angular.element(document.querySelectorAll('emoji:not([type="bomb"])')).remove();
-				break;
-			case 'rage':
-				break;
-			default:
-		}
 
+	$scope.handleClick = function(type) {
+		var props = Emoji[type];
+		if(props.onClick.addToScore) {
+			$scope.game.addToScore(props.onClick.addToScore);
+		}
+		if(props.onClick.endGame) {
+			$scope.endGame(props.onClick.endGame);
+		}
+		if(props.onClick.removeSelector) {
+			angular.element(document.querySelectorAll('emoji:not([type="bomb"])')).remove();
+		}
 		$timeout(function() {
 			$scope.$apply();
 		}, 0);
 	}
 
 	$scope.handleFallen = function(type) {
-		switch(type) {
-			case 'rage':
-			case 'japanese_ogre':
-				$scope.endGame('Oh no, you let misery and despair in to your life...');
-				break;
-			case 'smile':
-				$scope.game.addToScore(1);
-				break;
-			case 'grin':
-				$scope.game.addToScore(3);
-				break;
+		var props = Emoji[type];
+		if(props.onFall.addToScore) {
+			$scope.game.addToScore(props.onFall.addToScore);
 		}
+		if(props.onFall.endGame) {
+			$scope.endGame(props.onFall.endGame);
+		}
+		if(props.onFall.removeSelector) {
+			angular.element(document.querySelectorAll()).remove();
+		}
+		$timeout(function() {
+			$scope.$apply();
+		}, 0);
 	}
 
 	function getRandomIntegerBetween(start, end) {

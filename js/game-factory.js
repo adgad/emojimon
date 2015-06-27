@@ -1,6 +1,7 @@
-angular.module('starter.factory', [])
+factories
+.factory('Game', function(Emoji) {
 
-.factory('Game', function() {
+	var paceIncrease = [50,50,35,20];
 
 	var Game = function() {
 		this.reset();
@@ -20,11 +21,10 @@ angular.module('starter.factory', [])
 
 	Game.prototype.reset = function() {
 		this.pace = 1400;
-		this.emojiTypes = ["rage", "rage", "rage", "rage","rage", "rage", "rage", "rage", "smile","smile", "smile","smile"];
 		this.hasPlayed = false;
 		this.isPlaying = false;
 		this.score = 0;
-		this.paceIncrease = 50;
+		this.setStage(0);
 	}
 	Game.prototype.start = function() {
 		this.reset();
@@ -34,7 +34,6 @@ angular.module('starter.factory', [])
 	Game.prototype.lose = function(reasonLost) {
 		this.isPlaying = false;
 		this.reasonLost = reasonLost;
-		console.log('reasonLost', reasonLost);
 		if(this.score > this.topScore) {
 			this.topScore = this.score;
 			localStorage['topScore'] = this.topScore;
@@ -44,6 +43,16 @@ angular.module('starter.factory', [])
 	Game.prototype.nextEmoji = 	function() {
 		return this.emojiTypes[Math.floor(Math.random()* this.emojiTypes.length)];
 	}
+	Game.prototype.setStage = function(n) {
+		this.stage = n;
+		this.emojiTypes = [];
+		for(var type in Emoji) {
+			for(var i = 0; i < Emoji[type].probability[n]; i++) {
+				this.emojiTypes.push(type);
+			}
+		};
+		this.paceIncrease = paceIncrease[n];
+	}
 	Game.prototype.addToScore = 	function(n) {
 		this.score += n;
 		if(n < 0) {
@@ -52,15 +61,12 @@ angular.module('starter.factory', [])
 		if(this.pace >= 500) {
 			this.pace -= this.paceIncrease;
 		}
-		if(this.score > 18 && this.emojiTypes.indexOf('bomb') < 0) {
-			this.emojiTypes = this.emojiTypes.concat([ 'bomb', 'rage'])
-			this.paceIncrease = 20;
-		} else if (this.score > 13 && this.emojiTypes.indexOf('grin') < 0) {
-			this.emojiTypes = this.emojiTypes.concat(['grin', 'japanese_ogre']);
-			this.paceIncrease = 35;
+		if(this.score > 25 && this.emojiTypes.indexOf('bomb') < 0) {
+			this.setStage(3);
+		} else if (this.score > 18 && this.emojiTypes.indexOf('grin') < 0) {
+			this.setStage(2);
 			} else if( this.score > 7 &&  this.emojiTypes.indexOf('japanese_ogre') < 0) {
-				this.emojiTypes = this.emojiTypes.concat(['japanese_ogre'])
-				this.paceIncrease = 50;
+				this.setStage(1);
 			}
 	}
 
