@@ -4,9 +4,11 @@ controllers
 	var container = document.getElementById('game-container');
 
 	$scope.game = Game;
+	$scope.emojiPaused = false;
 
 
 	$scope.endGame = function(reasonLost) {
+
 		$scope.game.lose(reasonLost);
 		$state.transitionTo('start',$scope, {reload: true})
 		angular.element(document.querySelectorAll('emoji')).remove();
@@ -21,7 +23,11 @@ controllers
 			$scope.endGame(props.onClick.endGame);
 		}
 		if(props.onClick.removeSelector) {
-			angular.element(document.querySelectorAll('emoji:not([type="bomb"])')).remove();
+			angular.element(document.querySelectorAll(props.onClick.removeSelector)).remove();
+		}
+		if(props.onClick.pause) {
+			angular.element(document).triggerHandler('pause');
+
 		}
 		$timeout(function() {
 			$scope.$apply();
@@ -56,8 +62,10 @@ controllers
 		var emoji = {
 			type: forceType || $scope.game.nextEmoji()
 		};
+		if(!$scope.emojiPaused) {
+			angular.element(document.getElementById('game-container')).append($compile("<emoji type=" + emoji.type +" handle-click='handleClick(\"" + emoji.type+ "\")' handle-fallen='handleFallen(\"" + emoji.type+ "\")' data-variant='" + getRandomIntegerBetween(1, 2) + "'></emoji>")($scope));
+		}
 
-		angular.element(document.getElementById('game-container')).append($compile("<emoji type=" + emoji.type +" handle-click='handleClick(\"" + emoji.type+ "\")' handle-fallen='handleFallen(\"" + emoji.type+ "\")' data-variant='" + getRandomIntegerBetween(1, 2) + "'></emoji>")($scope));
 		if(!forceType) {
 			$timeout(createEmoji, getRandomIntegerBetween(0, $scope.game.pace));
 		}
@@ -76,5 +84,18 @@ controllers
 			$timeout(createEmoji, getRandomIntegerBetween(0, $scope.game.pace))
 		}
 	}
+
+	angular.element(document).on('pause', function(){
+				angular.element(document.querySelectorAll('emoji')).triggerHandler('pause');
+				$scope.emojiPaused = true;
+				$timeout(function() {
+					angular.element(document).triggerHandler('unpause');
+				}, 5000);
+	});
+	angular.element(document).on('unpause', function() {
+		angular.element(document.querySelectorAll('emoji')).triggerHandler('unpause');
+				$scope.emojiPaused = false;
+	});
+
 	$timeout(newGame, 500); //wait for state to transition in;
 });

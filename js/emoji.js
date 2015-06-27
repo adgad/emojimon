@@ -43,7 +43,7 @@ angular.module('starter.directives', ['ngAnimate'])
       		scope.$destroy();
       	});
 			});
-    	setTimeout(function() {
+    	$timeout(function() {
 	      element.css({
 	      	webkitTransform: 'translate3d(0,' + (window.innerHeight + 50) + 'px, 0)',
 	      	transform: 'translate3d(0,' + (window.innerHeight + 50) + 'px,0)'
@@ -54,7 +54,31 @@ angular.module('starter.directives', ['ngAnimate'])
 	      });
     	}, 1000);
 
+    	element.on('pause', function(e) {
+    		var transtionProp = ('transition' in element[0].style) ? 'transition' : 'webkitTransition';
+    		var transformProp = ('transform' in element[0].style) ? 'transform' : 'webkitTransform';
+    		var transform = window.getComputedStyle(element[0]).getPropertyValue(transformProp)
+    		element.attr('data-transition', window.getComputedStyle(element[0]).getPropertyValue(transtionProp));
+    		element.css({
+    			webkitTransform: transform,
+    			transform: transform,
+    			transition: 'none',
+    			webkitTransition: 'none',
+    			webkitAnimationPlayState: 'paused',
+    			animationPlayState: 'paused'
+    		});
+    	});
+    	element.on('unpause', function(e) {
 
+    		element.css({
+    			webkitTransform: 'matrix(1, 0, 0, 1, 0, ' + (window.innerHeight + 50) + ')',
+	      		transform: 'matrix(1, 0, 0, 1, 0, ' + (window.innerHeight + 50) + ')',
+	      		webkitTransition: element.attr('data-transition'),
+						transition: element.attr('data-transition'),
+	    			webkitAnimationPlayState: 'running',
+	    			animationPlayState: 'running'
+					});
+    	})
 	}
 }
 })

@@ -2,6 +2,7 @@ controllers
 
 .controller('StartCtrl', function($scope, $timeout, $compile, Game, $state,$cordovaSocialSharing) {
 		$scope.game = Game;
+		
  	$scope.shareAnywhere = function() {
  			if($scope.game.hasPlayed) {
 
