@@ -7,38 +7,20 @@ emoji {
   display: inline-block;
   position: absolute;
   margin-top: -45px;
-  -webkit-transition: all 4s linear;
-  transition: all 4s linear;
+  -webkit-transition: all 0s linear;
+  transition: all 0s linear;
 	top: 0;
 }
-emoji[type="rage"] {
-	-webkit-transition-duration: 3.5s;
-	transition-duration: 3.5s;
-}
-emoji[type="bomb"] {
-	-webkit-transition-duration: 3s;
-	transition-duration: 3s;
-}
-emoji[type="grin"] {
-	-webkit-transition-duration: 7s;
-	transition-duration: 7s;
-}
 emoji[type="japanese_ogre"] {
-	-webkit-transition-duration: 2s;
-	transition-duration: 2s;
 	-webkit-animation: snowside 3s ease-in-out forwards infinite;
   animation: snowside 3s ease-in-out forwards infinite;
 }
 emoji[type="japanese_ogre"][data-variant="1"] {
-	-webkit-transition-duration: 2s;
-	transition-duration: 2s;
 	-webkit-animation: snowside 3s ease-in-out forwards infinite;
   animation: snowside 3s ease-in-out forwards infinite;
   }
 
   emoji[type="japanese_ogre"][data-variant="2"] {
-	-webkit-transition-duration: 2s;
-	transition-duration: 2s;
 	-webkit-animation: snowside 4s cubic-bezier forwards infinite;
   animation: snowside 4s cubic-bezier forwards infinite;
   	-webkit-animation-direction: reverse;

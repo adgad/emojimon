@@ -6,6 +6,7 @@
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
 var controllers = angular.module('starter.controllers', ['ngAnimate', 'ngCordova']);
+var factories = angular.module('starter.factory', []);
 angular.module('starter', ['ionic','ngCordova', 'starter.directives', 'starter.factory','starter.controllers'])
 
 .run(function($ionicPlatform) {
