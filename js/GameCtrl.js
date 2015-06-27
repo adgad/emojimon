@@ -27,7 +27,6 @@ controllers
 		}
 		if(props.onClick.pause) {
 			angular.element(document).triggerHandler('pause');
-
 		}
 		$timeout(function() {
 			$scope.$apply();
@@ -86,8 +85,11 @@ controllers
 	}
 
 	angular.element(document).on('pause', function(){
-				angular.element(document.querySelectorAll('emoji')).triggerHandler('pause');
+			if($scope.emojiPaused) {
+				return;
+			}
 				$scope.emojiPaused = true;
+				angular.element(document.querySelectorAll('emoji')).triggerHandler('pause');
 				$timeout(function() {
 					angular.element(document).triggerHandler('unpause');
 				}, 5000);

@@ -2,7 +2,7 @@ angular.module('starter.directives', ['ngAnimate'])
 .directive('emoji', function($timeout, $animate, Emoji) {
 	var windowWidth = window.innerWidth;
 	var emojiSize = 32;
-	var clickEvent = ('ontransitionend' in window) ? 'touchdown mousedown' : 'click';
+	var clickEvent = ('ontouchstart' in window) ? 'touchstart' : 'click';
 	
 
 	function getRandomIntegerBetween(start, end) {
@@ -30,6 +30,7 @@ angular.module('starter.directives', ['ngAnimate'])
 
 			element.on(clickEvent, function(e) {
 				e.preventDefault();
+				e.stopPropagation();
 				
 
 				element.off('transitionEnd');
@@ -55,15 +56,16 @@ angular.module('starter.directives', ['ngAnimate'])
     	}, 1000);
 
     	element.on('pause', function(e) {
-    		var transtionProp = ('transition' in element[0].style) ? 'transition' : 'webkitTransition';
+    		var transitionProp = ('transition' in element[0].style) ? 'transition' : 'webkitTransition';
     		var transformProp = ('transform' in element[0].style) ? 'transform' : 'webkitTransform';
     		var transform = window.getComputedStyle(element[0]).getPropertyValue(transformProp)
-    		element.attr('data-transition', window.getComputedStyle(element[0]).getPropertyValue(transtionProp));
+    		element.attr('data-transition', window.getComputedStyle(element[0]).getPropertyValue(transitionProp));
+
     		element.css({
     			webkitTransform: transform,
     			transform: transform,
-    			transition: 'none',
     			webkitTransition: 'none',
+    			transition: 'none',
     			webkitAnimationPlayState: 'paused',
     			animationPlayState: 'paused'
     		});

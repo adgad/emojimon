@@ -9,7 +9,7 @@ factories
 			onFall: {
 				addToScore: 1
 			},
-			probability: [40, 45, 30, 25],
+			probability: [40, 40, 30, 25],
 			fallDuration: {
 				min: 3.3,
 				max: 4.1
@@ -19,6 +19,7 @@ factories
 					top: element.scrollTop,
 					webkitTransform: 'scale(0.1) translate3d(0,0,0)',
 					transform: 'scale(0.1) translateY(0)',
+					webkitTransition: 'all 0.7s ease-in',
 					transition: 'all 0.7s ease-in'
 				}
 			}
@@ -40,6 +41,7 @@ factories
 					top: element.scrollTop,
 					webkitTransform: 'scale(0.1) translate3d(0,0,0)',
 					transform: 'scale(0.1) translateY(0)',
+					webkitTransition: 'all 0.7s ease-in',
 					transition: 'all 0.7s ease-in'
 				}
 			}
@@ -58,6 +60,7 @@ factories
 				return {
 					webkitTransform: 'rotate(180deg) scale(1.1)',
 					transform: 'rotate(180deg) scale(1.1)',
+					webkitTransition: 'all 0.4s ease-in',
 					transition: 'all 0.4s ease-in',
 					opacity: 0
 				}
@@ -68,7 +71,7 @@ factories
 			onFall: {
 				endGame: 'The wretched ogre has devoured your happiness...'
 			},
-			probability: [0, 10, 10, 20],
+			probability: [0, 2, 10, 20],
 			fallDuration: {
 				min: 1.7,
 				max: 3
@@ -77,6 +80,7 @@ factories
 				return {
 					webkitTransform: 'rotate(180deg) scale(1.1)',
 					transform: 'rotate(180deg) scale(1.1)',
+					webkitTransition: 'all 0.4s ease-in',
 					transition: 'all 0.4s ease-in',
 					opacity: 0
 				}
@@ -98,6 +102,7 @@ factories
 					top: element.offsetTop,
 					webkitTransform: 'scale(3) rotate(1000deg) translate3d(0,0,0)',
 					transform: 'scale(3) rotate(1000deg) translated3(0,0,0)',
+					webkitTransition: 'all 0.7s ease-out',
 					transition: 'all 0.7s ease-out'
 				}
 			}
@@ -108,7 +113,7 @@ factories
 				pause: true
 			},
 			onFall: {},
-			probability: [0, 0, 5, 8],
+			probability: [0, 5, 5, 8],
 			fallDuration: {
 				min: 2.3,
 				max: 4.1
@@ -118,6 +123,7 @@ factories
 					top: element.offsetTop,
 					webkitTransform: 'scale(2) rotate(1000deg) translate3d(0,0,0)',
 					transform: 'scale(2) rotate(1000deg) translated3(0,0,0)',
+					webkitTransition: 'all 0.7s ease-out',
 					transition: 'all 0.7s ease-out'
 				}
 			}
