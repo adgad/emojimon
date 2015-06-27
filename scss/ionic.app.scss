@@ -85,11 +85,14 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 	overflow: hidden;
 }
 .tutorial {
-	font-size:44px;
+	font-size:36px;
+	padding: 8px;
+	margin: 4px;
+	display: inline-block;
 	color: #333;
 	transition: opacity 0.1s ease-in-out;
 	&:hover {
-		opacity: 0.7;
+		opacity: 0.6;
 	}
 }
 
