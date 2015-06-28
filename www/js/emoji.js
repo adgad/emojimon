@@ -49,8 +49,8 @@ angular.module('starter.directives', ['ngAnimate'])
 			});
     	$timeout(function() {
 	      element.css({
-	      	webkitTransform: 'translate3d(0,' + (window.innerHeight + 50) + 'px, 0)',
-	      	transform: 'translate3d(0,' + (window.innerHeight + 50) + 'px,0)'
+	      	webkitTransform: 'translate3d(0,' + (window.innerHeight + 50) + 'px, 0) rotateZ(0deg)',
+	      	transform: 'translate3d(0,' + (window.innerHeight + 50) + 'px,0) rotateZ(0deg);'
 	      }).one('webkitTransitionEnd transitionEnd', function() {
 	      	scope.handleFallen(element.attr('type'));
 	      	element.remove();
