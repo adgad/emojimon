@@ -117,6 +117,7 @@ controllers
 			$state.transitionTo('tutorial',$scope, {reload: true})
 		} else {
 			$scope.game.start();
+			document.body.classList.remove('ghostify');
 			createEmoji('smile');
 			$timeout(function() {
 				createEmoji('rage')

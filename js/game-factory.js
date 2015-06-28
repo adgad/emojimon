@@ -1,7 +1,7 @@
 factories
 .factory('Game', function(Emoji) {
 
-	var paceIncrease = [70,45,40,30,30];
+	var paceIncrease = [70,40,30,20,10];
 
 	var Game = function() {
 		this.reset();
