@@ -31,6 +31,9 @@ angular.module('starter', ['ionic','ngCordova', 'starter.directives', 'starter.f
 
 .config(function($stateProvider, $urlRouterProvider) {
 
+	if(typeof document.body.style.filter !== 'undefined' || typeof document.body.style.webkitFilter !== 'undefined' ) {
+		document.body.classList.add('filter-supported');
+	}
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
   // Set up the various states which the app can be in.

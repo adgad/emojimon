@@ -7,9 +7,18 @@ emoji {
   display: inline-block;
   position: absolute;
   margin-top: -45px;
-  -webkit-transition: all 0s linear;
-  transition: all 0s linear;
+  -webkit-transition: transform 0s linear;
+  transition: transform 0s linear;
 	top: 0;
+}
+emoji:not([type="ghost"]) {
+	.ghostify {
+		opacity: 0.2;
+	}
+	.filter-supported.ghostify & {
+		opacity: 1;
+		-webkit-filter: blur(3px) saturate(0) brightness(0.6) opacity(0.7);
+	}
 }
 emoji[type="japanese_ogre"] {
 	-webkit-animation: snowside 3s ease-in-out forwards infinite;
@@ -26,7 +35,35 @@ emoji[type="japanese_ogre"][data-variant="1"] {
   	-webkit-animation-direction: reverse;
   	animation-direction: reverse;
   }
+ emoji[type="ghost"] {
+ 	-webkit-animation: snowside 12s ease-in-out forwards infinite;
+  animation: snowside 4s ease-in-out forwards infinite;
+ }
   
+emoji[type="bomb"] {
+	&:after {
+		content: '-5';
+		display: block;
+		color: red;
+		position: absolute;
+		font-weight: bold;
+		font-size: 10px;
+		top: 0;
+		right:-5px;
+	}
+}
+emoji[type="watch"] {
+	&:after {
+		content: '-3';
+		display: block;
+		color: red;
+		position: absolute;
+		font-weight: bold;
+		font-size: 10px;
+		top: 0;
+		right:0;
+	}
+}
 @-webkit-keyframes snowside {
  25% {
     margin-left: 10%
