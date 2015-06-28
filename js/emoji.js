@@ -1,8 +1,8 @@
 angular.module('starter.directives', ['ngAnimate'])
 .directive('emoji', function($timeout, $animate, Emoji) {
 	var windowWidth = window.innerWidth;
-	var emojiSize = 32;
-	var clickEvent = ('ontouchstart' in window) ? 'touchstart' : 'click';
+	var emojiSize = 45;
+	var clickEvent = (('onmousedown' in window) ? 'mousedown' : (('ontouchstart' in window) ? 'touchstart' : 'click'));
 	
 
 	function getRandomIntegerBetween(start, end) {
@@ -14,10 +14,12 @@ angular.module('starter.directives', ['ngAnimate'])
 	return {
 		scope: {
 			'handleClick': '&',
-			'handleFallen': '&'
+			'handleFallen': '&',
+			'handleEnter': '&'
 		},
 		link: function(scope, element, attr) {
 			var props = Emoji[attr.type];
+
       element.css({
 	       left: getRandomIntegerBetween(emojiSize, (windowWidth - (2*emojiSize))) + 'px',
 	       backgroundImage: 'url("img/emoji/' + attr.type + '.svg")',
@@ -25,10 +27,9 @@ angular.module('starter.directives', ['ngAnimate'])
  	      	transitionDuration: getRandomFloatBetween(props.fallDuration.min, props.fallDuration.max) + 's'
 
       });
-
       element.attr('will-change', 'transform');
+			element.one(clickEvent, function(e) {
 
-			element.on(clickEvent, function(e) {
 				e.preventDefault();
 				e.stopPropagation();
 				
@@ -40,9 +41,11 @@ angular.module('starter.directives', ['ngAnimate'])
 				element.css(props.endTransition(element))
 
 				element.one('webkitTransitionEnd transitionEnd', function() {
+					element.clickStarted = false;
 					element.remove();
       		scope.$destroy();
       	});
+      	return false;
 			});
     	$timeout(function() {
 	      element.css({
@@ -53,33 +56,47 @@ angular.module('starter.directives', ['ngAnimate'])
 	      	element.remove();
       		scope.$destroy();
 	      });
-    	}, 1000);
 
+        scope.handleEnter(element.attr('type'));
+    	}, 1000);
+    	element.off('pause');
     	element.on('pause', function(e) {
-    		var transitionProp = ('transition' in element[0].style) ? 'transition' : 'webkitTransition';
+    		var transitionProp = ('transition' in element[0].style) ? 'transitionDuration' : 'webkitTransitionDuration';
     		var transformProp = ('transform' in element[0].style) ? 'transform' : 'webkitTransform';
-    		var transform = window.getComputedStyle(element[0]).getPropertyValue(transformProp)
-    		element.attr('data-transition', window.getComputedStyle(element[0]).getPropertyValue(transitionProp));
+    		element.attr('data-transform', window.getComputedStyle(element[0]).getPropertyValue(transformProp))
+    		element.attr('data-transition',element[0].style[transitionProp]);
 
     		element.css({
-    			webkitTransform: transform,
-    			transform: transform,
-    			webkitTransition: 'none',
-    			transition: 'none',
+    			webkitTransform: element.attr('data-transform'),
+    			transform: element.attr('data-transform'),
+    			webkitTransitionDuration: '10000s',
+    			transitionDuration: '10000s',
     			webkitAnimationPlayState: 'paused',
     			animationPlayState: 'paused'
     		});
     	});
     	element.on('unpause', function(e) {
-
+    		var transform = element.attr('data-transform');
+    		var heightSoFar =transform.match(/([0-9]*\.[0-9]+)/);
+    		var heightToGo = window.innerHeight + 50;
+    		var transitionDuration = parseFloat(element.attr('data-transition').replace('s', ''), 10);
+    		if(heightSoFar) {
+    			heightSoFar = parseFloat(heightSoFar, 10);
+    			transitionDuration = transitionDuration * ((heightToGo - heightSoFar) / heightToGo);
+    		}
     		element.css({
-    			webkitTransform: 'matrix(1, 0, 0, 1, 0, ' + (window.innerHeight + 50) + ')',
+    				webkitTransitionDuration: transitionDuration + 's',
+						transitionDuration: transitionDuration + 's',
+    		});
+    		$timeout(function() {
+    			element.css({
+    				webkitTransform: 'matrix(1, 0, 0, 1, 0, ' + (window.innerHeight + 50) + ')',
 	      		transform: 'matrix(1, 0, 0, 1, 0, ' + (window.innerHeight + 50) + ')',
-	      		webkitTransition: element.attr('data-transition'),
-						transition: element.attr('data-transition'),
 	    			webkitAnimationPlayState: 'running',
 	    			animationPlayState: 'running'
 					});
+    		}, 10)
+
     	})
 	}
 }

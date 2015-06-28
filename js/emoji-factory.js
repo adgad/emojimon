@@ -9,7 +9,8 @@ factories
 			onFall: {
 				addToScore: 1
 			},
-			probability: [40, 40, 30, 25],
+			onEnter: {},
+			probability: [40, 40, 30, 25, 10],
 			fallDuration: {
 				min: 3.3,
 				max: 4.1
@@ -31,7 +32,8 @@ factories
 			onFall: {
 				addToScore: 2
 			},
-			probability: [0, 0, 10, 20],
+			onEnter: {},
+			probability: [0, 0, 10, 20, 10],
 			fallDuration: {
 				min: 3.5,
 				max: 7
@@ -51,10 +53,11 @@ factories
 			onFall: {
 				endGame: 'Oh no, you let misery and despair in to your life...'
 			},
-			probability: [60, 45, 40, 30],
+			probability: [60, 45, 40, 30, 40],
+			onEnter: {},
 			fallDuration: {
-				min: 2.5,
-				max: 3.5
+				min: 2.3,
+				max: 3.2
 			},
 			endTransition: function(element){
 				return {
@@ -71,7 +74,8 @@ factories
 			onFall: {
 				endGame: 'The wretched ogre has devoured your happiness...'
 			},
-			probability: [0, 2, 10, 20],
+			probability: [0, 2, 10, 20, 25],
+			onEnter: {},
 			fallDuration: {
 				min: 1.7,
 				max: 3
@@ -92,7 +96,8 @@ factories
 				removeSelector: 'emoji:not([type="bomb"])'
 			},
 			onFall: {},
-			probability: [0, 0, 0, 5],
+			onEnter: {},
+			probability: [0, 0, 0, 5, 6],
 			fallDuration: {
 				min: 2.3,
 				max: 4.1
@@ -101,7 +106,7 @@ factories
 				return {
 					top: element.offsetTop,
 					webkitTransform: 'scale(3) rotate(1000deg) translate3d(0,0,0)',
-					transform: 'scale(3) rotate(1000deg) translated3(0,0,0)',
+					transform: 'scale(3) rotate(1000deg) translate3d(0,0,0)',
 					webkitTransition: 'all 0.7s ease-out',
 					transition: 'all 0.7s ease-out'
 				}
@@ -112,19 +117,44 @@ factories
 				addToScore: -3,
 				pause: true
 			},
+			onEnter: {},
 			onFall: {},
-			probability: [0, 5, 5, 8],
+			probability: [0, 5, 5, 8, 5],
 			fallDuration: {
 				min: 2.3,
 				max: 4.1
 			},
 			endTransition: function(element){
 				return {
-					top: element.offsetTop,
-					webkitTransform: 'scale(2) rotate(1000deg) translate3d(0,0,0)',
-					transform: 'scale(2) rotate(1000deg) translated3(0,0,0)',
+					webkitTransform: 'rotate(1000deg)',
+					transform: 'rotate(1000deg)',
 					webkitTransition: 'all 0.7s ease-out',
 					transition: 'all 0.7s ease-out'
+				}
+			}
+		},
+		"ghost": {
+			onEnter: {
+				ghostify: true
+			},
+			onClick: {
+				ghostify: false
+			},
+			onFall: {
+				ghostify: false
+			},
+			probability: [0, 0, 0, 1, 5],
+			fallDuration: {
+				min: 2.3,
+				max: 7.1
+			},
+			endTransition: function(element){
+				return {
+					webkitTransform: 'rotate(180deg) scale(1.1)',
+					transform: 'rotate(180deg) scale(1.1)',
+					webkitTransition: 'all 0.4s ease-in',
+					transition: 'all 0.4s ease-in',
+					opacity: 0
 				}
 			}
 		}

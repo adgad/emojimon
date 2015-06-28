@@ -1,7 +1,7 @@
 factories
 .factory('Game', function(Emoji) {
 
-	var paceIncrease = [70,45,40,30];
+	var paceIncrease = [70,45,40,30,30];
 
 	var Game = function() {
 		this.reset();
@@ -61,11 +61,14 @@ factories
 		if(this.pace >= 500) {
 			this.pace -= this.paceIncrease;
 		}
-		if(this.score > 25 && this.emojiTypes.indexOf('bomb') < 0) {
+
+		if(this.score > 40) {
+			this.setStage(4);
+		} else if(this.score > 25) {
 			this.setStage(3);
-		} else if (this.score > 18 && this.emojiTypes.indexOf('grin') < 0) {
+		} else if (this.score > 18) {
 			this.setStage(2);
-			} else if( this.score > 7 &&  this.emojiTypes.indexOf('japanese_ogre') < 0) {
+			} else if( this.score > 10) {
 				this.setStage(1);
 			}
 	}

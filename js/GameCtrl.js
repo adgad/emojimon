@@ -14,6 +14,33 @@ controllers
 		angular.element(document.querySelectorAll('emoji')).remove();
 	}
 
+	$scope.handleEnter = function(type) {
+		var props = Emoji[type];
+		if(props.onEnter.addToScore) {
+			$scope.game.addToScore(props.onEnter.addToScore);
+		}
+		if(props.onEnter.endGame) {
+			$scope.endGame(props.onEnter.endGame);
+		}
+		if(props.onEnter.removeSelector) {
+			angular.element(document.querySelectorAll(props.onEnter.removeSelector)).remove();
+		}
+		if(props.onEnter.pause) {
+			angular.element(document).triggerHandler('pause');
+		}
+		if(props.onEnter.ghostify === true) {
+			document.body.classList.add('ghostify');
+		} else if (props.onEnter.ghostify === false) {
+			if(document.querySelectorAll('emoji[type="ghost"]').length <= 1) {
+				document.body.classList.remove('ghostify');
+			}
+		}
+		$timeout(function() {
+			$scope.$apply();
+		}, 0);
+	}
+
+
 	$scope.handleClick = function(type) {
 		var props = Emoji[type];
 		if(props.onClick.addToScore) {
@@ -27,6 +54,13 @@ controllers
 		}
 		if(props.onClick.pause) {
 			angular.element(document).triggerHandler('pause');
+		}
+		if(props.onClick.ghostify === true) {
+			document.body.classList.add('ghostify');
+		} else if (props.onClick.ghostify === false) {
+			if(document.querySelectorAll('emoji[type="ghost"]').length <= 1) {
+				document.body.classList.remove('ghostify');
+			}
 		}
 		$timeout(function() {
 			$scope.$apply();
@@ -43,6 +77,13 @@ controllers
 		}
 		if(props.onFall.removeSelector) {
 			angular.element(document.querySelectorAll()).remove();
+		}
+		if(props.onFall.ghostify === true) {
+			document.body.classList.add('ghostify');
+		} else if (props.onFall.ghostify === false) {
+			if(document.querySelectorAll('emoji[type="ghost"]').length <= 1) {
+				document.body.classList.remove('ghostify');
+			}
 		}
 		$timeout(function() {
 			$scope.$apply();
@@ -62,7 +103,7 @@ controllers
 			type: forceType || $scope.game.nextEmoji()
 		};
 		if(!$scope.emojiPaused) {
-			angular.element(document.getElementById('game-container')).append($compile("<emoji type=" + emoji.type +" handle-click='handleClick(\"" + emoji.type+ "\")' handle-fallen='handleFallen(\"" + emoji.type+ "\")' data-variant='" + getRandomIntegerBetween(1, 2) + "'></emoji>")($scope));
+			angular.element(document.getElementById('game-container')).append($compile("<emoji type=" + emoji.type +" handle-click='handleClick(\"" + emoji.type+ "\")' handle-fallen='handleFallen(\"" + emoji.type+ "\")' handle-enter='handleEnter(\"" + emoji.type + "\")' data-variant='" + getRandomIntegerBetween(1, 2) + "'></emoji>")($scope));
 		}
 
 		if(!forceType) {
@@ -83,7 +124,8 @@ controllers
 			$timeout(createEmoji, getRandomIntegerBetween(0, $scope.game.pace))
 		}
 	}
-
+	angular.element(document).off('pause');
+	angular.element(document).off('unpause');
 	angular.element(document).on('pause', function(){
 			if($scope.emojiPaused) {
 				return;
