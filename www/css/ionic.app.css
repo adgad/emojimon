@@ -9920,7 +9920,7 @@ emoji {
 
 .ghostify emoji:not([type="ghost"]) {
   opacity: 0.15;
-  -webkit-filter: saturate(0.2) brightness(1.6); }
+  -webkit-filter: saturate(0.2) brightness(1.7); }
 
 emoji[type="japanese_ogre"] {
   -webkit-animation: snowside 3s ease-in-out forwards infinite;

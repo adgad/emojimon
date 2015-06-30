@@ -1,5 +1,8 @@
 factories
 .factory('Emoji', function() {
+	
+	var scaleFactor = window.innerHeight / 572;
+	alert(window.innerHeight);
 	return {
 		"smile" : {
 			stage: 1,
@@ -12,8 +15,8 @@ factories
 			onEnter: {},
 			probability: [40, 40, 30, 25, 10],
 			fallDuration: {
-				min: 3.3,
-				max: 4.1
+				min: 3.3 * scaleFactor,
+				max: 4.1 * scaleFactor
 			},
 			endTransition: function(element){
 				return {
@@ -35,8 +38,8 @@ factories
 			onEnter: {},
 			probability: [0, 0, 10, 20, 10],
 			fallDuration: {
-				min: 3.5,
-				max: 7
+				min: 3.5 * scaleFactor,
+				max: 7 * scaleFactor
 			},
 			endTransition: function(element){
 				return {
@@ -56,8 +59,8 @@ factories
 			probability: [60, 45, 40, 30, 40],
 			onEnter: {},
 			fallDuration: {
-				min: 2.3,
-				max: 3.2
+				min: 2.3 * scaleFactor,
+				max: 3.2 * scaleFactor
 			},
 			endTransition: function(element){
 				return {
@@ -77,8 +80,8 @@ factories
 			probability: [0, 2, 10, 20, 25],
 			onEnter: {},
 			fallDuration: {
-				min: 1.7,
-				max: 3
+				min: 1.7 * scaleFactor,
+				max: 3 * scaleFactor
 			},
 			endTransition: function(element){
 				return {
@@ -99,8 +102,8 @@ factories
 			onEnter: {},
 			probability: [0, 0, 0, 5, 6],
 			fallDuration: {
-				min: 2.3,
-				max: 4.1
+				min: 2.3 * scaleFactor,
+				max: 4.1 * scaleFactor
 			},
 			endTransition: function(element){
 				return {
@@ -121,8 +124,8 @@ factories
 			onFall: {},
 			probability: [0, 5, 5, 8, 5],
 			fallDuration: {
-				min: 2.3,
-				max: 4.1
+				min: 2.3 * scaleFactor,
+				max: 4.1 * scaleFactor
 			},
 			endTransition: function(element){
 				return {
@@ -145,8 +148,8 @@ factories
 			},
 			probability: [0, 0, 0, 1, 5],
 			fallDuration: {
-				min: 2.3,
-				max: 7.1
+				min: 2.3 * scaleFactor,
+				max: 7.1 * scaleFactor
 			},
 			endTransition: function(element){
 				return {
