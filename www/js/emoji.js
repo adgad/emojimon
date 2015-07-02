@@ -2,7 +2,6 @@ angular.module('starter.directives', ['ngAnimate'])
 .directive('emoji', function($timeout, $animate, Emoji) {
 	var windowWidth = window.innerWidth;
 	var emojiSize = 45;
-	var clickEvent = (('onmousedown' in window) ? 'mousedown' : (('ontouchstart' in window) ? 'touchstart' : 'click'));
 	
 
 	function getRandomIntegerBetween(start, end) {
@@ -23,17 +22,15 @@ angular.module('starter.directives', ['ngAnimate'])
       element.css({
 	       left: getRandomIntegerBetween(emojiSize, (windowWidth - (2*emojiSize))) + 'px',
 	       backgroundImage: 'url("img/emoji/' + attr.type + '.svg")',
- 	      	webkitTransitionDuration: getRandomFloatBetween(props.fallDuration.min, props.fallDuration.max) + 's',
- 	      	transitionDuration: getRandomFloatBetween(props.fallDuration.min, props.fallDuration.max) + 's'
+ 	      	webkitTransition: '-webkit-transform ' + getRandomFloatBetween(props.fallDuration.min, props.fallDuration.max) + 's linear',
+ 	      	transition: 'transform ' + getRandomFloatBetween(props.fallDuration.min, props.fallDuration.max) + 's linear'
 
       });
       element.attr('will-change', 'transform');
-			element.one(clickEvent, function(e) {
-
+			element.on('mousedown touchstart  touchend click', function(e) {
 				e.preventDefault();
 				e.stopPropagation();
-				
-
+				console.log(e.type);
 				element.off('transitionEnd');
 				element.off('webkitTransitionEnd');
 				scope.handleClick(element.attr('type'));
@@ -61,9 +58,10 @@ angular.module('starter.directives', ['ngAnimate'])
     	}, 1000);
     	element.off('pause');
     	element.on('pause', function(e) {
+    		var style = window.getComputedStyle(element[0], null)
     		var transitionProp = ('transition' in element[0].style) ? 'transitionDuration' : 'webkitTransitionDuration';
-    		var transformProp = ('transform' in element[0].style) ? 'transform' : 'webkitTransform';
-    		element.attr('data-transform', window.getComputedStyle(element[0]).getPropertyValue(transformProp))
+    		var transformProp = ('transform' in style) ? 'transform' : 'webkitTransform';
+    		element.attr('data-transform', style.getPropertyValue(transformProp) || style[transformProp]);
     		element.attr('data-transition',element[0].style[transitionProp]);
 
     		element.css({
