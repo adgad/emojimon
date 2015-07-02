@@ -2,7 +2,6 @@ factories
 .factory('Emoji', function() {
 	
 	var scaleFactor = window.innerHeight / 572;
-	alert(window.innerHeight);
 	return {
 		"smile" : {
 			stage: 1,
@@ -21,7 +20,7 @@ factories
 			endTransition: function(element){
 				return {
 					top: element.scrollTop,
-					webkitTransform: 'scale(0.1) translate3d(0,0,0)',
+					webkitTransform: 'scale(0.1) translateY(0)',
 					transform: 'scale(0.1) translateY(0)',
 					webkitTransition: 'all 0.7s ease-in',
 					transition: 'all 0.7s ease-in'
@@ -44,7 +43,7 @@ factories
 			endTransition: function(element){
 				return {
 					top: element.scrollTop,
-					webkitTransform: 'scale(0.1) translate3d(0,0,0)',
+					webkitTransform: 'scale(0.1) translateY(0)',
 					transform: 'scale(0.1) translateY(0)',
 					webkitTransition: 'all 0.7s ease-in',
 					transition: 'all 0.7s ease-in'
@@ -96,11 +95,12 @@ factories
 		"bomb": {
 			onClick: {
 				addToScore: -5,
-				removeSelector: 'emoji:not([type="bomb"])'
+				removeSelector: 'emoji:not([type="bomb"])',
+				ghostify: false
 			},
 			onFall: {},
 			onEnter: {},
-			probability: [0, 0, 0, 5, 6],
+			probability: [0, 0, 0, 3, 4],
 			fallDuration: {
 				min: 2.3 * scaleFactor,
 				max: 4.1 * scaleFactor
@@ -122,7 +122,7 @@ factories
 			},
 			onEnter: {},
 			onFall: {},
-			probability: [0, 5, 5, 8, 5],
+			probability: [0, 1, 2, 4, 5],
 			fallDuration: {
 				min: 2.3 * scaleFactor,
 				max: 4.1 * scaleFactor

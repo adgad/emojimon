@@ -9905,18 +9905,27 @@ a.button {
 .ion-xbox:before {
   content: "\f30c"; }
 
+* {
+  -webkit-tap-highlight-color: transparent !important;
+  -webkit-user-select: none !important;
+  -webkit-touch-callout: none !important; }
+
 emoji {
-  width: 45px;
-  height: 45px;
+  width: 48px;
+  height: 48px;
   padding: 1px;
+  box-sizing: border-box;
   z-index: 10;
   background-size: contain;
   display: inline-block;
   position: absolute;
-  margin-top: -45px;
+  margin-top: -48px;
   -webkit-transition: transform 0s linear;
   transition: transform 0s linear;
-  top: 0; }
+  top: 0;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none; }
 
 .ghostify emoji:not([type="ghost"]) {
   opacity: 0.15;
