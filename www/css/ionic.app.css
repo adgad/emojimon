@@ -9905,11 +9905,6 @@ a.button {
 .ion-xbox:before {
   content: "\f30c"; }
 
-* {
-  -webkit-tap-highlight-color: transparent !important;
-  -webkit-user-select: none !important;
-  -webkit-touch-callout: none !important; }
-
 emoji {
   width: 48px;
   height: 48px;
