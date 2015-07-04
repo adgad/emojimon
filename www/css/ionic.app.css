@@ -9992,6 +9992,9 @@ emoji[type="watch"]:after {
 .slider {
   height: 100%; }
 
+.scroll {
+  width: 100%; }
+
 .col-center {
   text-align: center; }
 
@@ -10052,6 +10055,11 @@ emoji[type="watch"]:after {
   .tutorial:hover {
     opacity: 0.6; }
 
+.item-stacked-label {
+  text-align: left; }
+  .item-stacked-label .input-label {
+    font-weight: bold; }
+
 .reason {
   font-family: "HelveticaNeue-Light", "Roboto-Light", "Segoe UI-Light", sans-serif-light;
   font-weight: 200;
@@ -10063,3 +10071,10 @@ emoji[type="watch"]:after {
 
 [animate-on-change].changed {
   background-color: #33cd5f; }
+
+.leaderboard .button.button-positive:hover, .leaderboard .button.button-positive.active, .leaderboard .button.button-positive:focus, .leaderboard .button.button-positive.activated {
+  box-shadow: none;
+  border-color: #0c60ee;
+  background-color: #387ef5;
+  color: #fff;
+  cursor: initial; }

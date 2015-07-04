@@ -7,14 +7,29 @@
 	<div class="row row-center">
   	<div class="col col-center">
   		<h1 class="emojimon-title">EM<img class="title-emoji" src="img/emoji/smile.svg"/>JIM<img class="title-emoji" src="img/emoji/rage.svg"/>N</h1>
+  		<label ng-hide="game.reasonLost" class="item item-input item-stacked-label">
+		    <span class="input-label">Your name</span>
+		    <input type="text" placeholder="Anonymous" ng-model="game.username" ng-change="usernameChange()">
+		  </label>
+
+			<div class="scores">
+
 			<h3 ng-show="game.score < game.topScore && game.hasPlayed">
 			<span class="game-over">Game Over</span>
 			<img class="title-emoji" src="img/emoji/sad.svg"/>
 			</h3>
-			<h3 ng-show="game.score >= game.topScore && game.hasPlayed">
-			<span class="game-over">New High Score</span>
-			<img class="title-emoji" src="img/emoji/seenoevil.svg"/>
+			<div class="is-leader" ng-show="game.isLeader && game.hasPlayed">
+			<h3 >
+				<span class="game-over">You made the <a ui-sref="leaderboard">top 20</a>!</span>
+				<img class="title-emoji" src="img/emoji/seenoevil.svg"/>
 			</h3>
+			</div>
+			<div class="high-score" ng-show="game.score >= game.topScore && game.hasPlayed && !game.isLeader">
+			<h3 >
+				<span class="game-over">You beat your high score!</span>
+				<img class="title-emoji" src="img/emoji/seenoevil.svg"/>
+			</h3>
+			</div>
 
 			<p ng-show="game.reasonLost" class="reason">{{game.reasonLost}}</p>
 			<div class="scores">
@@ -27,6 +42,7 @@
 			<a href="#/game" class="button button-balanced button-block" ng-show="game.hasPlayed">
 		  	Play again
 			</a>
+			<a ui-sref="leaderboard" class="tutorial icon ion-trophy"></a>
 			<a ui-sref="tutorial" class="tutorial icon ion-help-circled"></a>
 		<a class="tutorial icon ion-android-share-alt" ng-click="shareAnywhere()"></a>
 

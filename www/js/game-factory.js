@@ -1,10 +1,14 @@
 factories
-.factory('Game', function(Emoji) {
+.factory('Game', function(Emoji, Leaderboard) {
 
 	var paceIncrease = [70,40,30,20,10];
 
 	var Game = function() {
 		this.reset();
+		
+		this.username = localStorage.username || 'Anonymous';
+		localStorage.username = this.username;
+		this.minLeaderboardScore = Leaderboard.length ? Leaderboard[Leaderboard.length - 1].score : 0;
 		this.topScore = localStorage['topScore']  ? parseInt(localStorage.topScore) : 0;
 		if(localStorage.hasEverPlayed) {
 			this.hasEverPlayed = true;
@@ -34,9 +38,22 @@ factories
 	Game.prototype.lose = function(reasonLost) {
 		this.isPlaying = false;
 		this.reasonLost = reasonLost;
+
 		if(this.score > this.topScore) {
 			this.topScore = this.score;
 			localStorage['topScore'] = this.topScore;
+		}
+
+		if(this.score > this.minLeaderboardScore || Leaderboard.length < 19) {
+			Leaderboard.$add({
+				"name":  this.username,
+				"score": this.score,
+				"$priority": -this.score
+			}, this.score);
+			this.isLeader = true;
+			this.minLeaderboardScore =  Leaderboard.length ? Leaderboard[Leaderboard.length - 1].score : 0;
+		} else {
+			this.isLeader = false;
 		}
 	}
 
@@ -71,6 +88,10 @@ factories
 			} else if( this.score > 10) {
 				this.setStage(1);
 			}
+	}
+
+	Game.prototype.saveLocalStorage = function() {
+		localStorage.username = this.username;
 	}
 
 	return new Game();

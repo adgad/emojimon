@@ -1,0 +1,30 @@
+<ion-view view-title="Leaderboard">
+ 	<ion-header-bar class="bar-light bar-energized">
+ 		<h1 class="title">Top scores</h1>
+	</ion-header-bar>
+<ion-content class="padding row" overflow-scroll="true" scrollbar-x="false" scrollbar-y="false">
+
+
+	<div class="row">
+  	<div class="col col-100">
+  <ion-list type="list-inset" class="leaderboard">
+    <ion-item ng-repeat="item in leaderboard" class="item item-button-right">
+      {{item.name}}
+       <span class="button button-positive">
+	      {{item.score}}
+	    </span>
+
+    </ion-item>
+    <ion-item ng-hide="leaderboard.length" class="item">
+      Cannot load top scores right now.
+    </ion-item>
+
+  </ion-list>
+  </div>
+  </div>
+
+  <a href="#/start" class="button button-block">
+  	Back
+	</a>
+</ion-content>
+</ion-view>

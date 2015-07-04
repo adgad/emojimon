@@ -30,7 +30,6 @@ angular.module('starter.directives', ['ngAnimate'])
 			element.on('mousedown touchstart  touchend click', function(e) {
 				e.preventDefault();
 				e.stopPropagation();
-				console.log(e.type);
 				element.off('transitionEnd');
 				element.off('webkitTransitionEnd');
 				scope.handleClick(element.attr('type'));

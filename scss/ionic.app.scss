@@ -26,6 +26,9 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 .slider {
 	height: 100%;
 }
+.scroll {
+	width: 100%;
+}
 .col-center {
 	text-align: center;
 }
@@ -96,6 +99,12 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 		opacity: 0.6;
 	}
 }
+.item-stacked-label {
+	text-align: left;
+	.input-label {
+		font-weight: bold;
+	}
+}
 
 .reason {
 	font-family: $font-family-light-sans-serif;
@@ -108,4 +117,16 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 }
 [animate-on-change].changed {
   background-color: $balanced;
+}
+
+.leaderboard {
+.button.button-positive {
+	&:hover, &.active, &:focus, &.activated {
+		box-shadow: none;  
+		border-color: #0c60ee;
+	  background-color: #387ef5;
+	  color: #fff;
+	  cursor: initial;
+		}
+	}
 }
