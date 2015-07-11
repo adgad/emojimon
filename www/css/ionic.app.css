@@ -9921,6 +9921,10 @@ emoji {
   -webkit-tap-highlight-color: transparent;
   -webkit-user-select: none;
   -webkit-touch-callout: none; }
+  .fatten emoji {
+    width: 64px;
+    height: 64px;
+    margin-top: -64px; }
 
 .ghostify emoji:not([type="ghost"]) {
   opacity: 0.15;

@@ -43,17 +43,18 @@ factories
 			this.topScore = this.score;
 			localStorage['topScore'] = this.topScore;
 			this.minLeaderboardScore = Leaderboard.length ? Leaderboard[Leaderboard.length - 1].score : 0;
-				if(this.score > this.minLeaderboardScore || Leaderboard.length < 19) {
-				Leaderboard.$add({
-					"name":  this.username,
-					"score": this.score,
-					"$priority": -this.score
-				}, this.score);
+			if(this.score > this.minLeaderboardScore || Leaderboard.length < 19) {
 				this.isLeader = true;
 				this.minLeaderboardScore =  Leaderboard.length ? Leaderboard[Leaderboard.length - 1].score : 0;
 			} else {
 				this.isLeader = false;
 			}
+			Leaderboard.$add({
+				"name":  this.username,
+				"score": this.score,
+				"platform": device ? device.platform : 'web',
+				"$priority": -this.score,
+			}, this.score);
 		}
 	
 

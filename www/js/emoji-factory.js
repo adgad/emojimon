@@ -1,6 +1,6 @@
 factories
 .factory('Emoji', function() {
-	
+
 	var scaleFactor = window.innerHeight / 572;
 	return {
 		"smile" : {
@@ -12,7 +12,7 @@ factories
 				addToScore: 1
 			},
 			onEnter: {},
-			probability: [40, 40, 30, 25, 10],
+			probability: [40, 35, 30, 25, 20],
 			fallDuration: {
 				min: 3.3 * scaleFactor,
 				max: 4.1 * scaleFactor
@@ -96,11 +96,12 @@ factories
 			onClick: {
 				addToScore: -5,
 				removeSelector: 'emoji:not([type="bomb"])',
-				ghostify: false
+				ghostify: false,
+				fatten: false
 			},
 			onFall: {},
 			onEnter: {},
-			probability: [0, 0, 0, 3, 4],
+			probability: [0, 0, 0, 2, 3],
 			fallDuration: {
 				min: 2.3 * scaleFactor,
 				max: 4.1 * scaleFactor
@@ -122,7 +123,7 @@ factories
 			},
 			onEnter: {},
 			onFall: {},
-			probability: [0, 1, 2, 4, 5],
+			probability: [0, 1, 2, 3, 4],
 			fallDuration: {
 				min: 2.3 * scaleFactor,
 				max: 4.1 * scaleFactor
@@ -146,10 +147,33 @@ factories
 			onFall: {
 				ghostify: false
 			},
-			probability: [0, 0, 0, 1, 5],
+			probability: [0, 0, 0, 1, 3],
 			fallDuration: {
 				min: 2.3 * scaleFactor,
 				max: 7.1 * scaleFactor
+			},
+			endTransition: function(element){
+				return {
+					webkitTransform: 'rotate(180deg) scale(1.1)',
+					transform: 'rotate(180deg) scale(1.1)',
+					webkitTransition: 'all 0.4s ease-in',
+					transition: 'all 0.4s ease-in',
+					opacity: 0
+				}
+			}
+		},
+		"cake": {
+			onEnter: {},
+			onClick: {
+				addToScore: -2,
+				fatten: true
+			},
+			onFall: {
+			},
+			probability: [0, 1, 1, 1, 1],
+			fallDuration: {
+				min: 2.3 * scaleFactor,
+				max: 3.1 * scaleFactor
 			},
 			endTransition: function(element){
 				return {

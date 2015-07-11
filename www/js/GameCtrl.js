@@ -62,6 +62,17 @@ controllers
 				document.body.classList.remove('ghostify');
 			}
 		}
+		if(props.onClick.fatten === true) {
+			document.body.classList.add('fatten');
+			clearTimeout(fattenTimeout);
+			var fattenTimeout = setTimeout(function() {
+				document.body.classList.remove('fatten');
+			}, 9000);
+		} else if (props.onClick.fatten === false)  {
+			document.body.classList.remove('fatten');
+			clearTimeout(fattenTimeout);
+		}
+
 		$timeout(function() {
 			$scope.$apply();
 		}, 0);
@@ -109,7 +120,7 @@ controllers
 		if(!forceType) {
 			$timeout(createEmoji, getRandomIntegerBetween(0, $scope.game.pace));
 		}
-		
+
 	}
 
 	function newGame(){
@@ -118,6 +129,7 @@ controllers
 		} else {
 			$scope.game.start();
 			document.body.classList.remove('ghostify');
+			document.body.classList.remove('fatten');
 			createEmoji('smile');
 			$timeout(function() {
 				createEmoji('rage')
@@ -135,7 +147,7 @@ controllers
 				angular.element(document.querySelectorAll('emoji')).triggerHandler('pause');
 				$timeout(function() {
 					angular.element(document).triggerHandler('unpause');
-				}, 5000);
+				}, 4000);
 	});
 	angular.element(document).on('unpause', function() {
 		angular.element(document.querySelectorAll('emoji')).triggerHandler('unpause');
