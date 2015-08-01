@@ -9906,15 +9906,15 @@ a.button {
   content: "\f30c"; }
 
 emoji {
-  width: 48px;
-  height: 48px;
-  padding: 1px;
+  width: 49px;
+  height: 49px;
+  padding: 0px;
   box-sizing: border-box;
   z-index: 10;
   background-size: contain;
   display: inline-block;
   position: absolute;
-  margin-top: -48px;
+  margin-top: -49px;
   -webkit-transition: transform 0s linear;
   transition: transform 0s linear;
   top: 0;
@@ -10077,3 +10077,17 @@ emoji[type="watch"]:after {
   background-color: #387ef5;
   color: #fff;
   cursor: initial; }
+.leaderboard .item:first-child {
+  background-color: #33cd5f; }
+.leaderboard .item i {
+  color: #666;
+  font-size: 20px;
+  display: inline-block;
+  float: right; }
+.leaderboard .item .ion-ribbon-b {
+  color: #fff;
+  font-size: 16px;
+  float: none; }
+
+.bar-energized .button {
+  margin: 0; }

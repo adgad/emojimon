@@ -55,12 +55,12 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 
 .score {
 	font-family: $font-family-light-sans-serif;
-	font-weight: 200;  
+	font-weight: 200;
 	display: inline-block;
   font-size: 16px;
   width: auto;
  	padding: 5px;
-  
+
   background-color: transparentize($energized, 0.3);
   color: #333;
   border: 3px solid #333;
@@ -122,11 +122,29 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 .leaderboard {
 .button.button-positive {
 	&:hover, &.active, &:focus, &.activated {
-		box-shadow: none;  
+		box-shadow: none;
 		border-color: #0c60ee;
 	  background-color: #387ef5;
 	  color: #fff;
 	  cursor: initial;
 		}
 	}
+
+	.item:first-child {
+		background-color: $balanced;
+	}
+	.item i {
+		color: #666;
+		font-size: 20px;
+		display: inline-block;
+		float: right;
+	}
+	.item .ion-ribbon-b {
+		color: #fff;
+		font-size: 16px;
+		float: none;
+	}
+}
+.bar-energized .button {
+	margin: 0;
 }
