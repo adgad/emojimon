@@ -1,7 +1,7 @@
 angular.module('starter.directives', ['ngAnimate'])
 .directive('emoji', function($timeout, $animate, Emoji) {
 	var windowWidth = window.innerWidth;
-	var emojiSize = 45;
+	var emojiSize = 48;
 
 
 	function getRandomIntegerBetween(start, end) {
@@ -43,7 +43,7 @@ angular.module('starter.directives', ['ngAnimate'])
       	});
       	return false;
 			});
-			
+
     	$timeout(function() {
 	      element.css({
 	      	webkitTransform: 'translate3d(0,' + (window.innerHeight + 50) + 'px, 0) rotateZ(0deg)',
