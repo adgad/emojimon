@@ -5,10 +5,10 @@ factories
 
 	var Game = function() {
 		this.reset();
-		
+
 		this.username = localStorage.username || 'Anonymous';
 		localStorage.username = this.username;
-		this.minLeaderboardScore = Leaderboard.length ? Leaderboard[Leaderboard.length - 1].score : 0;
+		this.minLeaderboardScore = Leaderboard.length > 19 ? Leaderboard[19].score : 0;
 		this.topScore = localStorage['topScore']  ? parseInt(localStorage.topScore) : 0;
 		if(localStorage.hasEverPlayed) {
 			this.hasEverPlayed = true;
@@ -42,10 +42,10 @@ factories
 		if(this.score > this.topScore) {
 			this.topScore = this.score;
 			localStorage['topScore'] = this.topScore;
-			this.minLeaderboardScore = Leaderboard.length ? Leaderboard[Leaderboard.length - 1].score : 0;
+			this.minLeaderboardScore = Leaderboard.length > 19 ? Leaderboard[19].score : 0;
 			if(this.score > this.minLeaderboardScore || Leaderboard.length < 19) {
 				this.isLeader = true;
-				this.minLeaderboardScore =  Leaderboard.length ? Leaderboard[Leaderboard.length - 1].score : 0;
+				this.minLeaderboardScore = Leaderboard.length > 19 ? Leaderboard[19].score : 0;
 			} else {
 				this.isLeader = false;
 			}
@@ -56,9 +56,9 @@ factories
 				"$priority": -this.score,
 			}, this.score);
 		}
-	
 
-		
+
+
 	}
 
 	Game.prototype.nextEmoji = 	function() {
@@ -99,5 +99,5 @@ factories
 	}
 
 	return new Game();
-	
+
 });
