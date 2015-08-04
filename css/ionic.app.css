@@ -9988,6 +9988,43 @@ emoji[type="watch"]:after {
   100% {
     margin-left: 0px; } }
 
+@keyframes snowside {
+  25% {
+    margin-left: 10%; }
+
+  50% {
+    margin-left: -10%; }
+
+  100% {
+    margin-left: 0px; } }
+
+.game-type--omgwtf emoji[type="rage"] {
+  -webkit-animation: omgwtf 4s cubic-bezier(.12, .48, .9, .54) forwards infinite;
+  animation: omgwtf 4s cubic-bezier(.12, .48, .9, .54) forwards infinite; }
+
+.game-type--omgwtf emoji[type="rage"][data-variant="2"] {
+  -webkit-animation: omgwtf 7s cubic-bezier(.85, .12, .43, .56) forwards infinite;
+  animation: omgwtf 7s cubic-bezier(.85, .12, .1, .3) forwards infinite; }
+
+.game-type--omgwtf emoji[type="grin"] {
+  -webkit-animation: snowside 5s cubic-bezier(.85, .12, .43, .56) forwards infinite;
+  animation: snowside 5s cubic-bezier(.85, .12, .43, .56) forwards infinite;
+  -webkit-animation-direction: reverse;
+  animation-direction: reverse; }
+
+@keyframes omgwtf {
+  10% {
+    margin-left: -10%; }
+
+  22% {
+    margin-left: 8%; }
+
+  67% {
+    margin-left: 0%; }
+
+  100% {
+    margin-left: -5%; } }
+
 .slider {
   height: 100%; }
 
@@ -10091,3 +10128,14 @@ emoji[type="watch"]:after {
 
 .bar-energized .button {
   margin: 0; }
+
+.game-type--omgwtf #game-container {
+  background-color: #222; }
+
+.input-label--full-width {
+  width: 100%;
+  display: block;
+  margin: 0 auto; }
+
+.modes .item-radio {
+  display: inline-block; }

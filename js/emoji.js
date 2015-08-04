@@ -1,5 +1,5 @@
 angular.module('starter.directives', ['ngAnimate'])
-.directive('emoji', function($timeout, $animate, Emoji) {
+.directive('emoji', function($timeout, $animate, Game) {
 	var windowWidth = window.innerWidth;
 	var emojiSize = 48;
 
@@ -17,7 +17,7 @@ angular.module('starter.directives', ['ngAnimate'])
 			'handleEnter': '&'
 		},
 		link: function(scope, element, attr) {
-			var props = Emoji[attr.type];
+			var props = Game.emoji[attr.type];
 
       element.css({
 	       left: getRandomIntegerBetween(emojiSize, (windowWidth - (2*emojiSize))) + 'px',

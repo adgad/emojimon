@@ -1,8 +1,8 @@
-<ion-view view-title="Start">
+<ion-view view-title="Start"  class="start game-type--{{game.type}}">
   <ion-content scroll="false" class="padding row" >
   <div class="bar bar-header bar-light bar-energized">
 	</div>
-	
+
 
 	<div class="row row-center">
   	<div class="col col-center">
@@ -10,7 +10,7 @@
   		<label ng-hide="game.reasonLost" class="item item-input item-stacked-label">
 		    <span class="input-label">Your name</span>
 		    <input type="text" placeholder="Anonymous" ng-model="game.username" ng-change="usernameChange()">
-		    
+
 		  </label>
 			<div class="scores">
 
@@ -36,6 +36,21 @@
 			<span ng-show="game.hasPlayed" class="score">Score: {{game.score}}</span>
 			<span ng-show="game.hasPlayed" class="score top">Top Score: {{game.topScore}}</span>
 			</div>
+      <div class="list modes">
+        <span class="input-label input-label--full-width">Game mode:</span>
+        <label class="item item-radio">
+          <input type="radio" name="group"  ng-model="game.type" value="normal">
+          <div class="item-content">
+            Normal
+          </div>
+          <i class="radio-icon ion-checkmark"></i>
+        </label>
+        <label class="item item-radio">
+          <input type="radio" name="group"  ng-model="game.type" value="omgwtf">
+          <div class="item-content">OMGWTF</div>
+          <i class="radio-icon ion-checkmark"></i>
+        </label>
+      </div>
 			<a href="#/game" class="button button-balanced button-block" ng-hide="game.hasPlayed">
 		  	Play
 			</a>

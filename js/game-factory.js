@@ -5,11 +5,8 @@ factories
 
 	var Game = function() {
 		this.reset();
-
 		this.username = localStorage.username || 'Anonymous';
 		localStorage.username = this.username;
-		this.minLeaderboardScore = Leaderboard.length > 19 ? Leaderboard[19].score : 0;
-		this.topScore = localStorage['topScore']  ? parseInt(localStorage.topScore) : 0;
 		if(localStorage.hasEverPlayed) {
 			this.hasEverPlayed = true;
 		} else {
@@ -18,13 +15,64 @@ factories
 		}
 	}
 
+	Object.defineProperty(Game.prototype, 'type', {
+		get: function() {
+			return localStorage.lastPlayedType || 'normal'
+		},
+		set: function(newVal) {
+			localStorage.lastPlayedType = newVal;
+		}
+	})
+
+	Object.defineProperty(Game.prototype, 'leaderboard', {
+		get: function() {
+			return Leaderboard[this.type];
+		}
+	});
+
+	Object.defineProperty(Game.prototype, 'minLeaderboardScore', {
+		get: function() {
+			return this.leaderboard.length > 19 ? this.leaderboard[19].score : 0;
+		}
+	});
+
+	Object.defineProperty(Game.prototype, 'emoji', {
+			get: function() {
+			return Emoji[this.type];
+		}
+	});
+
+	Object.defineProperty(Game.prototype, 'topScoreKey', {
+		get: function() {
+			return this.type === 'normal' ? 'topScore' : 'topScore.' + this.type;
+		}
+	});
+
+	Object.defineProperty(Game.prototype, 'topScore', {
+		get: function() {
+			return localStorage[this.topScoreKey]  ? parseInt(localStorage[this.topScoreKey]) : 0;
+		},
+		set: function(newVal) {
+			localStorage[this.topScoreKey] = newVal;
+		}
+	});
+
+	Object.defineProperty(Game.prototype, 'pace', {
+		get: function() {
+			var paces = {
+				normal: 1400,
+				omgwtf: 750
+			};
+			return paces[this.type];
+		}
+	});
+
 	Game.prototype.playedFirstTime = function() {
 		this.hasEverPlayed = true;
 		localStorage.hasEverPlayed = true;
 	}
 
 	Game.prototype.reset = function() {
-		this.pace = 1400;
 		this.hasPlayed = false;
 		this.isPlaying = false;
 		this.score = 0;
@@ -41,18 +89,18 @@ factories
 
 		if(this.score > this.topScore) {
 			this.topScore = this.score;
-			localStorage['topScore'] = this.topScore;
-			this.minLeaderboardScore = Leaderboard.length > 19 ? Leaderboard[19].score : 0;
-			if(this.score > this.minLeaderboardScore || Leaderboard.length < 19) {
+
+			this.minLeaderboardScore = this.leaderboard.length > 19 ? this.leaderboard[19].score : 0;
+			if(this.score > this.minLeaderboardScore || this.leaderboard.length < 19) {
 				this.isLeader = true;
-				this.minLeaderboardScore = Leaderboard.length > 19 ? Leaderboard[19].score : 0;
+				this.minLeaderboardScore = this.leaderboard.length > 19 ? this.leaderboard[19].score : 0;
 			} else {
 				this.isLeader = false;
 			}
-			Leaderboard.$add({
+			this.leaderboard.$add({
 				"name":  this.username,
 				"score": this.score,
-				"platform": device ? device.platform : 'web',
+				"platform": typeof window.device !== 'undefined' ? device.platform : 'web',
 				"$priority": -this.score,
 			}, this.score);
 		}
@@ -67,14 +115,14 @@ factories
 	Game.prototype.setStage = function(n) {
 		this.stage = n;
 		this.emojiTypes = [];
-		for(var type in Emoji) {
-			for(var i = 0; i < Emoji[type].probability[n]; i++) {
+		for(var type in this.emoji) {
+			for(var i = 0; i < this.emoji[type].probability[n]; i++) {
 				this.emojiTypes.push(type);
 			}
 		};
 		this.paceIncrease = paceIncrease[n];
 	}
-	Game.prototype.addToScore = 	function(n) {
+	Game.prototype.addToScore =	function(n) {
 		this.score += n;
 		if(n < 0) {
 			return;
