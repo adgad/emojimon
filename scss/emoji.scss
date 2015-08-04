@@ -34,7 +34,7 @@ emoji[type="japanese_ogre"] {
 emoji[type="japanese_ogre"][data-variant="1"] {
 	-webkit-animation: snowside 3s ease-in-out forwards infinite;
   animation: snowside 3s ease-in-out forwards infinite;
-  }
+}
 
   emoji[type="japanese_ogre"][data-variant="2"] {
 	-webkit-animation: snowside 4s cubic-bezier forwards infinite;
@@ -93,4 +93,49 @@ emoji[type="watch"] {
   100% {
     margin-left: 0px
   }
+}
+
+@keyframes snowside {
+  25% {
+    margin-left: 10%
+      }
+  50% {
+    margin-left: -10%
+  }
+  100% {
+    margin-left: 0px
+  }
+}
+
+
+.game-type--omgwtf emoji[type="rage"] {
+	-webkit-animation: omgwtf 4s  cubic-bezier(.12,.48,.90,.54)forwards infinite;
+	animation: omgwtf 4s  cubic-bezier(.12,.48,.90,.54) forwards infinite;
+};
+
+.game-type--omgwtf emoji[type="rage"][data-variant="2"] {
+	-webkit-animation: omgwtf 7s  cubic-bezier(.85,.12,.43,.56) forwards infinite;
+	animation: omgwtf 7s  cubic-bezier(.85,.12,.1,.3) forwards infinite;
+};
+.game-type--omgwtf emoji[type="grin"] {
+	-webkit-animation: snowside 5s cubic-bezier(.85,.12,.43,.56) forwards infinite;
+	animation: snowside 5s cubic-bezier(.85,.12,.43,.56) forwards infinite;
+	-webkit-animation-direction: reverse;
+	animation-direction: reverse;
+};
+
+
+@keyframes omgwtf {
+	10% {
+		margin-left: -10%
+	}
+	22% {
+		margin-left: 8%
+	}
+	67% {
+		margin-left: 0%
+	}
+	100% {
+		margin-left: -5%
+	}
 }

@@ -148,3 +148,18 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 .bar-energized .button {
 	margin: 0;
 }
+
+.game-type--omgwtf {
+	#game-container {
+		background-color: #222;
+	}
+}
+
+.input-label--full-width {
+	width: 100%;
+  display: block;
+  margin: 0 auto;
+}
+.modes .item-radio {
+	display: inline-block;
+}

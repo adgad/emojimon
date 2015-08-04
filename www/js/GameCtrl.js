@@ -15,7 +15,7 @@ controllers
 	}
 
 	$scope.handleEnter = function(type) {
-		var props = Emoji[type];
+		var props = Game.emoji[type];
 		if(props.onEnter.addToScore) {
 			$scope.game.addToScore(props.onEnter.addToScore);
 		}
@@ -42,7 +42,7 @@ controllers
 
 
 	$scope.handleClick = function(type) {
-		var props = Emoji[type];
+		var props = Game.emoji[type];
 		if(props.onClick.addToScore) {
 			$scope.game.addToScore(props.onClick.addToScore);
 		}
@@ -79,7 +79,7 @@ controllers
 	}
 
 	$scope.handleFallen = function(type) {
-		var props = Emoji[type];
+		var props = Game.emoji[type];
 		if(props.onFall.addToScore) {
 			$scope.game.addToScore(props.onFall.addToScore);
 		}
