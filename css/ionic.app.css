@@ -10129,7 +10129,7 @@ emoji[type="watch"]:after {
 .bar-energized .button {
   margin: 0; }
 
-.game-type--omgwtf #game-container {
+.game-type--omgwtf #game-container, .game-type--omgwtf .bar {
   background-color: #222; }
 
 .input-label--full-width {

@@ -244,7 +244,7 @@ factories
 			onEnter: {},
 			fallDuration: {
 				min: 1.2 * scaleFactor,
-				max: 3 * scaleFactor
+				max: 2.8 * scaleFactor
 			},
 			endTransition: function(element){
 				return {
@@ -261,7 +261,7 @@ factories
 			onFall: {
 				endGame: 'The wretched ogre has devoured your happiness...'
 			},
-			probability: [10, 11, 14, 25, 40],
+			probability: [20, 11, 14, 25, 40],
 			onEnter: {},
 			fallDuration: {
 				min: 1 * scaleFactor,
@@ -332,7 +332,7 @@ factories
 			onFall: {
 				ghostify: false
 			},
-			probability: [0, 1, 0, 1, 1],
+			probability: [1, 1, 2, 2, 3],
 			fallDuration: {
 				min: 0.3 * scaleFactor,
 				max: 1.6 * scaleFactor
