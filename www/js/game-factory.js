@@ -61,7 +61,7 @@ factories
 		get: function() {
 			var paces = {
 				normal: 1400,
-				omgwtf: 750
+				omgwtf: 730
 			};
 			return paces[this.type];
 		}

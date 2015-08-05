@@ -150,7 +150,8 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 }
 
 .game-type--omgwtf {
-	#game-container {
+	#game-container,
+	.bar {
 		background-color: #222;
 	}
 }
