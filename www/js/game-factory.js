@@ -2,6 +2,14 @@ factories
 .factory('Game', function(Emoji, Leaderboard) {
 
 	var paceIncrease = [70,40,30,20,10];
+	var paces = {
+		normal: 1400,
+		omgwtf: 900
+	};
+	var minPaces = {
+		normal: 500,
+		omgwtf: 350
+	};
 
 	var Game = function() {
 		this.reset();
@@ -13,6 +21,7 @@ factories
 			this.hasEverPlayed = false;
 			localStorage.hasEverPlayed = false;
 		}
+		this.pace = paces[this.type];
 	}
 
 	Object.defineProperty(Game.prototype, 'type', {
@@ -57,15 +66,6 @@ factories
 		}
 	});
 
-	Object.defineProperty(Game.prototype, 'pace', {
-		get: function() {
-			var paces = {
-				normal: 1400,
-				omgwtf: 730
-			};
-			return paces[this.type];
-		}
-	});
 
 	Game.prototype.playedFirstTime = function() {
 		this.hasEverPlayed = true;
@@ -77,7 +77,9 @@ factories
 		this.isPlaying = false;
 		this.score = 0;
 		this.setStage(0);
+		this.pace = paces[this.type];
 	}
+
 	Game.prototype.start = function() {
 		this.reset();
 		this.hasPlayed = true;

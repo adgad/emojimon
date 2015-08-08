@@ -194,7 +194,7 @@ factories
 				endGame: 'Uh oh. You sent away happiness!'
 			},
 			onFall: {
-				addToScore: 2
+				addToScore: 1
 			},
 			onEnter: {},
 			probability: [20, 20, 25, 20, 10],
@@ -217,7 +217,7 @@ factories
 				endGame: 'Uh oh. You sent away happiness!'
 			},
 			onFall: {
-				addToScore: 4
+				addToScore: 2
 			},
 			onEnter: {},
 			probability: [5, 10, 10, 20, 30],
@@ -243,8 +243,8 @@ factories
 			probability: [60, 45, 40, 30, 40],
 			onEnter: {},
 			fallDuration: {
-				min: 1.2 * scaleFactor,
-				max: 2.8 * scaleFactor
+				min: 1 * scaleFactor,
+				max: 2.6 * scaleFactor
 			},
 			endTransition: function(element){
 				return {
